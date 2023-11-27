@@ -1,0 +1,19 @@
+# Virtual Environment
+venv/
+
+# Dependencies
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# PyQt6 compiled files
+*.pyuic
+
+# IDE files (if you're using a specific IDE)
+.idea/
+.vscode/
+
+# Ignore system-generated files
+Thumbs.db
+.DS_Store
