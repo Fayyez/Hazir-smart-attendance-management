@@ -21,3 +21,5 @@ py -m venv env
 ```shell
 pip install -r requirements. txt
 ```
+## collaboration
+**DONNOT PUSH YOUR CHNAGES DIRECTLY TO MAIN BRANCH**. First, make your own branch against each issue (new module/ functionality/ changes) that you are wokring on at the moment. test your code locally, and then raise a pull request for that branch. 
