@@ -1,7 +1,10 @@
 # Virtual Environment
-./env/
-/env/
+.env
+.venv
 env/
+venv/
+env/Lib/
+
 # Dependencies
 __pycache__/
 *.pyc
