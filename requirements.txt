@@ -1,5 +1,5 @@
-pyqt5-tools
 opencv-python
 PyQt5
+PyQt5Designer
 numpy
 face-recognition
