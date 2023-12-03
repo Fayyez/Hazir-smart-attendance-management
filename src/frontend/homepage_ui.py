@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\Danish\Documents\GitHub\Hazir-smart-attendance-management\homepage.ui'
+# Form implementation generated from reading ui file 'c:\Users\Danish\Documents\GitHub\Hazir-smart-attendance-management\src\frontend\homepage.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
