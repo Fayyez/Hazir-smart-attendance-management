@@ -87,8 +87,8 @@ class Ui_a(object):
         self.m_user_icon_image_box.setPixmap(QtGui.QPixmap(".\\src\\frontend\\../../../../../Downloads/multiple_user_icon.png"))
         self.m_user_icon_image_box.setScaledContents(True)
         self.m_user_icon_image_box.setObjectName("m_user_icon_image_box")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(930, 2, 61, 41))
+        self.hamburger_button = QtWidgets.QPushButton(self.centralwidget)
+        self.hamburger_button.setGeometry(QtCore.QRect(934, 0, 57, 50))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -189,16 +189,16 @@ class Ui_a(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
-        self.pushButton.setPalette(palette)
+        self.hamburger_button.setPalette(palette)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.pushButton.setFont(font)
-        self.pushButton.setText("")
+        self.hamburger_button.setFont(font)
+        self.hamburger_button.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(".\\src\\frontend\\../assets/hamburgerr.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon)
-        self.pushButton.setIconSize(QtCore.QSize(80, 60))
-        self.pushButton.setObjectName("pushButton")
+        self.hamburger_button.setIcon(icon)
+        self.hamburger_button.setIconSize(QtCore.QSize(80, 60))
+        self.hamburger_button.setObjectName("hamburger_button")
         self.background_frame_top_1 = QtWidgets.QFrame(self.centralwidget)
         self.background_frame_top_1.setGeometry(QtCore.QRect(0, 0, 1001, 51))
         palette = QtGui.QPalette()
@@ -233,6 +233,7 @@ class Ui_a(object):
         self.background_frame_top_1.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.background_frame_top_1.setFrameShadow(QtWidgets.QFrame.Raised)
         self.background_frame_top_1.setObjectName("background_frame_top_1")
+        self.background_frame_top_1.setStyleSheet("background-color : yellow;")
         self.Hazirio_logo_atTop = QtWidgets.QLabel(self.background_frame_top_1)
         self.Hazirio_logo_atTop.setGeometry(QtCore.QRect(380, 10, 221, 31))
         palette = QtGui.QPalette()
@@ -252,6 +253,8 @@ class Ui_a(object):
         self.Hazirio_logo_atTop.setObjectName("Hazirio_logo_atTop")
         self.start_attendance_button = QtWidgets.QPushButton(self.centralwidget)
         self.start_attendance_button.setGeometry(QtCore.QRect(570, 200, 271, 111))
+        self.start_attendance_button.setStyleSheet("background-color : lightblue;")
+
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -323,6 +326,7 @@ class Ui_a(object):
         self.background_frame_top_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.background_frame_top_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.background_frame_top_2.setObjectName("background_frame_top_2")
+        self.background_frame_top_2.setStyleSheet("background-color : grey;")
         self.user_icon_button = QtWidgets.QPushButton(self.centralwidget)
         self.user_icon_button.setGeometry(QtCore.QRect(870, 0, 57, 50))
         self.user_icon_button.setText("")
@@ -342,7 +346,7 @@ class Ui_a(object):
         self.memebr_count_heading.raise_()
         self.total_students.raise_()
         self.m_user_icon_image_box.raise_()
-        self.pushButton.raise_()
+        self.hamburger_button.raise_()
         self.start_attendance_button.raise_()
         self.get_last_report_button.raise_()
         self.back_button.raise_()
@@ -379,10 +383,10 @@ class Ui_a(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">askdaksdkdsa</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">sdkaskdksad</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">dkjaksdhjkhsad</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">akjdskjhajkshd</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Room Name :  Probability and Statistics</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Section :  C</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Students : 42</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.current_date_text.setText(_translate("a", "07/12/2023"))
 
