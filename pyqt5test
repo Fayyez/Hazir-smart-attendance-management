@@ -1,0 +1,75 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QMessageBox
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
+
+
+class LoginScreen(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Login Screen")
+        self.setMinimumSize(800, 600)
+
+        main_layout = QVBoxLayout()
+
+        # Logo
+        logo_layout = QHBoxLayout()
+        pixmap = QPixmap("your_logo.png")  # Replace "your_logo.png" with your logo file path
+        logo_label = QLabel()
+        logo_label.setPixmap(pixmap)
+        logo_layout.addWidget(logo_label, alignment=Qt.AlignCenter)
+        main_layout.addLayout(logo_layout)
+
+        # Username input
+        username_layout = QHBoxLayout()
+        self.label_username = QLabel("Username:")
+        self.lineEdit_username = QLineEdit()
+        username_layout.addWidget(self.label_username)
+        username_layout.addWidget(self.lineEdit_username)
+        main_layout.addLayout(username_layout)
+
+        # Password input
+        password_layout = QHBoxLayout()
+        self.label_password = QLabel("Password:")
+        self.lineEdit_password = QLineEdit()
+        self.lineEdit_password.setEchoMode(QLineEdit.Password)
+        password_layout.addWidget(self.label_password)
+        password_layout.addWidget(self.lineEdit_password)
+        main_layout.addLayout(password_layout)
+
+        # Forgot Password link
+        forgot_password_layout = QHBoxLayout()
+        self.forgot_password_link = QLabel("<a href='#'>Forgot Password?</a>")
+        self.forgot_password_link.setOpenExternalLinks(True)
+        forgot_password_layout.addWidget(self.forgot_password_link)
+        main_layout.addLayout(forgot_password_layout)
+
+        # Login button
+        button_layout = QHBoxLayout()
+        self.button_login = QPushButton("Login")
+        self.button_login.clicked.connect(self.login)
+        button_layout.addWidget(self.button_login)
+        main_layout.addLayout(button_layout)
+
+        self.setLayout(main_layout)
+
+    def login(self):
+        username = self.lineEdit_username.text()
+        password = self.lineEdit_password.text()
+
+        # Example login validation (replace this with your authentication logic)
+        if username == "admin" and password == "password":
+            QMessageBox.information(self, "Login Successful", "Welcome, " + username + "!")
+        else:
+            QMessageBox.warning(self, "Login Failed", "Invalid username or password")
+
+
+def main():
+    app = QApplication(sys.argv)
+    login_screen = LoginScreen()
+    login_screen.show()
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()
