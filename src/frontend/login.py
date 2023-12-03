@@ -44,18 +44,18 @@ class Ui_MainWindow(object):
         self.login_button.setText(_translate("MainWindow", "Log in"))
         self.forgot_pass_button.setText(_translate("MainWindow", "forgot password"))
 
-    def login(self):
+    def login(self, teachers_lists): # teachers list from db is passed as param
         # Function to handle login button click
         # Check login credentials (e.g., against a database)
-        email = self.input_email.text()
+        name = self.input_email.text()
         password = self.input_password.text()
-
+        new_teacher = Teacher(name, password)
         # For simplicity, check if email is not empty
-        if email:
+        if new_teacher in teachers_lists : # if input name & password matches a teacher
             # If login is successful, open the home page
-            self.open_home_page()
+            return New_teacher
         else:
-            QMessageBox.warning(None, "Login Failed", "Invalid email or password")
+            return None
 
     def open_home_page(self):
         # Open the home page window
