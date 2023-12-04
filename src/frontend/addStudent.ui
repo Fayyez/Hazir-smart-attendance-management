@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>700</height>
+    <width>999</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -631,19 +631,6 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>280</y>
-       <width>161</width>
-       <height>151</height>
-      </rect>
-     </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="or_heading">
      <property name="geometry">
       <rect>
@@ -693,6 +680,23 @@
       <string>Enter</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="upload_pic_button">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>300</y>
+       <width>131</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>
+Click here 
+ to
+upload pic
+ </string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="registration_portal_heading">
     <property name="geometry">
@@ -712,7 +716,7 @@
      <string>Registration Portal : </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="add_button">
     <property name="geometry">
      <rect>
       <x>840</x>
@@ -742,7 +746,7 @@
      <string>Return</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="gridGroupBox">
+   <widget class="QGroupBox" name="gridBox_cameraView">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -790,7 +794,7 @@
     </property>
     <layout class="QGridLayout" name="gridLayout"/>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="face_detected_heading">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -811,7 +815,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>530</x>
       <y>410</y>
       <width>71</width>
       <height>51</height>
@@ -855,7 +859,7 @@
      </palette>
     </property>
     <property name="text">
-     <string/>
+     <string>status</string>
     </property>
     <property name="pixmap">
      <pixmap>../assets/tick.png</pixmap>
@@ -864,7 +868,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="status_heading">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -889,18 +893,18 @@
    <zorder>Horizontal_line_at_top_1</zorder>
    <zorder>navigation_bar</zorder>
    <zorder>widget_registration_portal</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>gridGroupBox</zorder>
-   <zorder>label</zorder>
+   <zorder>add_button</zorder>
+   <zorder>gridBox_cameraView</zorder>
+   <zorder>face_detected_heading</zorder>
    <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
+   <zorder>status_heading</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>999</width>
      <height>26</height>
     </rect>
    </property>

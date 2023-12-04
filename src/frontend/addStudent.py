@@ -9,12 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1000, 700)
+        MainWindow.resize(999, 688)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.user_icon_button = QtWidgets.QPushButton(self.centralwidget)
@@ -219,10 +221,6 @@ class Ui_MainWindow(object):
         self.id_input_box.setGeometry(QtCore.QRect(50, 190, 231, 41))
         self.id_input_box.setText("")
         self.id_input_box.setObjectName("id_input_box")
-        self.lineEdit_3 = QtWidgets.QLineEdit(self.widget_registration_portal)
-        self.lineEdit_3.setGeometry(QtCore.QRect(10, 280, 161, 151))
-        self.lineEdit_3.setDragEnabled(True)
-        self.lineEdit_3.setObjectName("lineEdit_3")
         self.or_heading = QtWidgets.QLabel(self.widget_registration_portal)
         self.or_heading.setGeometry(QtCore.QRect(210, 290, 71, 51))
         font = QtGui.QFont()
@@ -238,23 +236,26 @@ class Ui_MainWindow(object):
         self.enter_button = QtWidgets.QPushButton(self.widget_registration_portal)
         self.enter_button.setGeometry(QtCore.QRect(190, 240, 93, 28))
         self.enter_button.setObjectName("enter_button")
+        self.upload_pic_button = QtWidgets.QPushButton(self.widget_registration_portal)
+        self.upload_pic_button.setGeometry(QtCore.QRect(10, 300, 131, 121))
+        self.upload_pic_button.setObjectName("upload_pic_button")
         self.registration_portal_heading = QtWidgets.QLabel(self.centralwidget)
         self.registration_portal_heading.setGeometry(QtCore.QRect(100, 90, 281, 61))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.registration_portal_heading.setFont(font)
         self.registration_portal_heading.setObjectName("registration_portal_heading")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(840, 530, 121, 81))
+        self.add_button = QtWidgets.QPushButton(self.centralwidget)
+        self.add_button.setGeometry(QtCore.QRect(840, 530, 121, 81))
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.pushButton.setFont(font)
-        self.pushButton.setMouseTracking(True)
-        self.pushButton.setAutoFillBackground(False)
-        self.pushButton.setStyleSheet("")
-        self.pushButton.setObjectName("pushButton")
-        self.gridGroupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.gridGroupBox.setGeometry(QtCore.QRect(470, 100, 401, 271))
+        self.add_button.setFont(font)
+        self.add_button.setMouseTracking(True)
+        self.add_button.setAutoFillBackground(False)
+        self.add_button.setStyleSheet("")
+        self.add_button.setObjectName("add_button")
+        self.gridBox_cameraView = QtWidgets.QGroupBox(self.centralwidget)
+        self.gridBox_cameraView.setGeometry(QtCore.QRect(470, 100, 401, 271))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(220, 220, 220))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -265,18 +266,18 @@ class Ui_MainWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(240, 240, 240))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        self.gridGroupBox.setPalette(palette)
-        self.gridGroupBox.setObjectName("gridGroupBox")
-        self.gridLayout = QtWidgets.QGridLayout(self.gridGroupBox)
+        self.gridBox_cameraView.setPalette(palette)
+        self.gridBox_cameraView.setObjectName("gridBox_cameraView")
+        self.gridLayout = QtWidgets.QGridLayout(self.gridBox_cameraView)
         self.gridLayout.setObjectName("gridLayout")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(510, 470, 281, 51))
+        self.face_detected_heading = QtWidgets.QLabel(self.centralwidget)
+        self.face_detected_heading.setGeometry(QtCore.QRect(510, 470, 281, 51))
         font = QtGui.QFont()
         font.setPointSize(18)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
+        self.face_detected_heading.setFont(font)
+        self.face_detected_heading.setObjectName("face_detected_heading")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(540, 410, 71, 51))
+        self.label_2.setGeometry(QtCore.QRect(530, 410, 71, 51))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(217, 217, 217))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -288,16 +289,15 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
         self.label_2.setPalette(palette)
-        self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap(".\\src\\frontend\\../assets/tick.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(690, 410, 141, 51))
+        self.status_heading = QtWidgets.QLabel(self.centralwidget)
+        self.status_heading.setGeometry(QtCore.QRect(690, 410, 141, 51))
         font = QtGui.QFont()
         font.setPointSize(18)
-        self.label_3.setFont(font)
-        self.label_3.setObjectName("label_3")
+        self.status_heading.setFont(font)
+        self.status_heading.setObjectName("status_heading")
         self.registration_portal_heading.raise_()
         self.background_frame_top_1.raise_()
         self.user_icon_button.raise_()
@@ -305,14 +305,14 @@ class Ui_MainWindow(object):
         self.Horizontal_line_at_top_1.raise_()
         self.navigation_bar.raise_()
         self.widget_registration_portal.raise_()
-        self.pushButton.raise_()
-        self.gridGroupBox.raise_()
-        self.label.raise_()
+        self.add_button.raise_()
+        self.gridBox_cameraView.raise_()
+        self.face_detected_heading.raise_()
         self.label_2.raise_()
-        self.label_3.raise_()
+        self.status_heading.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 999, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -332,11 +332,77 @@ class Ui_MainWindow(object):
         self.or_heading.setText(_translate("MainWindow", "OR"))
         self.useCamera_heading.setText(_translate("MainWindow", "Use camera ->"))
         self.enter_button.setText(_translate("MainWindow", "Enter"))
+        self.upload_pic_button.setText(_translate("MainWindow", "\n""Click here \n" " to\n""upload pic\n"" "))
         self.registration_portal_heading.setText(_translate("MainWindow", "Registration Portal : "))
-        self.pushButton.setText(_translate("MainWindow", "Add"))
-        self.pushButton.setShortcut(_translate("MainWindow", "Return"))
-        self.label.setText(_translate("MainWindow", "Face Detetcted"))
-        self.label_3.setText(_translate("MainWindow", "Status"))
+        self.add_button.setText(_translate("MainWindow", "Add"))
+        self.add_button.setShortcut(_translate("MainWindow", "Return"))
+        self.face_detected_heading.setText(_translate("MainWindow", "Face Detetcted"))
+        self.label_2.setText(_translate("MainWindow", "status"))
+        self.status_heading.setText(_translate("MainWindow", "Status"))
+       # self.upload_pic_button.clicked.connect(self.showDropBox)
+
+    # def showDropBox(self,event):
+        
+    #     demo = AppDemo()
+    #     demo.show()
+        
+    
+        
+class ImageLabel(QLabel):
+    def __init__(self):
+        super().__init__()
+
+        self.setAlignment(Qt.AlignCenter)
+        self.setText('\n\n Drop Image Here \n\n')
+        self.setStyleSheet('''
+            QLabel{
+                border: 4px dashed #aaa
+            }
+        ''')
+
+    def setPixmap(self, image):
+        super().setPixmap(image)
+
+class AppDemo(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.resize(400, 400)
+        self.setAcceptDrops(True)
+
+        mainLayout = QVBoxLayout()
+
+        self.photoViewer = ImageLabel()
+        mainLayout.addWidget(self.photoViewer)
+
+        self.setLayout(mainLayout)
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasImage:
+            event.accept()
+        else:
+            event.ignore()
+
+    def dragMoveEvent(self, event):
+        if event.mimeData().hasImage:
+            event.accept()
+        else:
+            event.ignore()
+
+    def dropEvent(self, event):
+        if event.mimeData().hasImage:
+            event.setDropAction(Qt.CopyAction)
+            file_path = event.mimeData().urls()[0].toLocalFile()
+            self.set_image(file_path)
+
+            event.accept()
+        else:
+            event.ignore()
+
+    def set_image(self, file_path):
+        self.photoViewer.setPixmap(QPixmap(file_path))
+       
+
+
 
 
 if __name__ == "__main__":
