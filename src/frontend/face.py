@@ -1,6 +1,7 @@
 import numpy as np
 import face_recognition
 import cv2
+import os
 
 def anyindex(result):
     for index in range(len(result)):
@@ -11,11 +12,18 @@ matchedname = ['zohaib marked present', 'fayeez marked present', 'uffan marked p
                'danish marked present', 'eehab marked present']
 
 def load_encodings(filename):
-    encodesaves = np.loadtxt(filename, delimiter=',')
-    return encodesaves
+    # yahan per root directory k path peche attack ia he, only filename enough nahi!
+    filepath = os.path.join(os.path.dirname(__file__), filename)
+    # numpy ki zarorat nahi, python khud hi read krleti he
+    with open(filepath, 'r') as file:
+        content = file.read()
+        encodesaves = content.split(',')
+    return encodesaves # tahan per list of strings return ho rahi he where each string is basically a float
+## agey isko jese deal krna wo dekhlo
 
 save_filename = 'all_encodings.txt'
 loaded_encodesaves = load_encodings(save_filename)
+print(loaded_encodesaves)
 
 # camera opened
 capImg = cv2.VideoCapture(0)  
