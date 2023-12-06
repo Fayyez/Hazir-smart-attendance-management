@@ -1,7 +1,35 @@
 import sys
-
 from PyQt5 import QtWidgets, QtCore, QtGui
 import cv2
+from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
+
+
+class PasswordDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Password Confirmation")
+        self.setFixedSize(300, 100)
+
+        self.label = QLabel("Enter Password:", self)
+        self.password_input = QLineEdit(self)
+        self.password_input.setEchoMode(QLineEdit.Password)
+
+        self.confirm_button = QPushButton("Confirm", self)
+        self.confirm_button.clicked.connect(self.check_password)
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.label)
+        layout.addWidget(self.password_input)
+        layout.addWidget(self.confirm_button)
+
+    def check_password(self):
+        if self.password_input.text() == "1234":
+            self.accept()
+        else:
+            QMessageBox.warning(self, "Wrong Password", "Incorrect password. Please try again.")
+
+    def get_password_confirmation(self):
+        return self.exec_() == QDialog.Accepted
 
 
 class MainWindow(QtWidgets.QWidget):
@@ -76,15 +104,31 @@ class MainWindow(QtWidgets.QWidget):
         self.camera_label.setPixmap(QtGui.QPixmap.fromImage(image))
 
     def enter_button_click(self):
+        # Check password confirmation
+        password_dialog = PasswordDialog(self)
+        if not password_dialog.get_password_confirmation():
+            return
+
         # Get the input from the boxes
         input1 = self.input_box1.text()
         input2 = self.input_box2.text()
 
-        # Perform some action based on the input
-        print(f"Input 1: {input1}")
-        print(f"Input 2: {input2}")
+        # Placeholder for processing the input values (replace with your logic)
+        if input1 and input2:
+            self.process_input_values(input1, input2)
+            QMessageBox.information(self, "Success", "Inputs processed successfully.")
+        else:
+            QMessageBox.warning(self, "Error", "Please fill in both input boxes.")
+
+    def process_input_values(self, input1, input2):
+        # Placeholder for processing input values (replace with your logic)
+        print(f"Processing Input 1: {input1}")
+        print(f"Processing Input 2: {input2}")
 
     def close_button_click(self):
+        password_dialog = PasswordDialog(self)
+        if not password_dialog.get_password_confirmation():
+            return
         # Stop the camera timer
         self.timer.stop()
 
@@ -93,7 +137,6 @@ class MainWindow(QtWidgets.QWidget):
 
         # Close the application
         self.close()
-    
 
 
 if __name__ == "__main__":

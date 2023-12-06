@@ -1,9 +1,36 @@
 import sys
-import dlib
-import face_recognition
 from PyQt5 import QtWidgets, QtCore, QtGui
 import cv2
-import numpy as np
+from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
+
+
+class PasswordDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Password Confirmation")
+        self.setFixedSize(300, 100)
+
+        self.label = QLabel("Enter Password:", self)
+        self.password_input = QLineEdit(self)
+        self.password_input.setEchoMode(QLineEdit.Password)
+
+        self.confirm_button = QPushButton("Confirm", self)
+        self.confirm_button.clicked.connect(self.check_password)
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.label)
+        layout.addWidget(self.password_input)
+        layout.addWidget(self.confirm_button)
+
+    def check_password(self):
+        if self.password_input.text() == "1234":
+            self.accept()
+        else:
+            QMessageBox.warning(self, "Wrong Password", "Incorrect password. Please try again.")
+
+    def get_password_confirmation(self):
+        return self.exec_() == QDialog.Accepted
+
 
 class MainWindow(QtWidgets.QWidget):
     def __init__(self):
@@ -57,9 +84,6 @@ class MainWindow(QtWidgets.QWidget):
         self.enter_button.clicked.connect(self.enter_button_click)
         self.close_button.clicked.connect(self.close_button_click)
 
-        # Load known face encodings
-        self.known_encodings = self.load_known_encodings()
-
         # Show the main window
         self.show()
 
@@ -68,47 +92,38 @@ class MainWindow(QtWidgets.QWidget):
         ret, frame = self.cap.read()
 
         # Convert frame to RGB format
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Resize frame to fit the camera frame size
-        rgb_frame = cv2.resize(rgb_frame, (581, 361))
-
-        # Find face locations and encodings
-        face_locations = face_recognition.face_locations(rgb_frame)
-        face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
-
-        # Compare faces to known encodings
-        for face_encoding, face_location in zip(face_encodings, face_locations):
-            matches = face_recognition.compare_faces(self.known_encodings, face_encoding)
-            if any(matches):
-                # Face recognized
-                print("Marked Present")
-                # You can add your logic here to display the name or perform other actions
-                # Example: self.display_name(input_name)
-                break
+        frame = cv2.resize(frame, (581, 361))
 
         # Convert frame to QImage
-        image = QtGui.QImage(rgb_frame.data, rgb_frame.shape[1], rgb_frame.shape[0], rgb_frame.strides[0], QtGui.QImage.Format_RGB888)
+        image = QtGui.QImage(frame.data, frame.shape[1], frame.shape[0], frame.strides[0], QtGui.QImage.Format_RGB888)
 
         # Display the frame in the camera label
         self.camera_label.setPixmap(QtGui.QPixmap.fromImage(image))
 
-    def load_known_encodings(self):
-        # Load known encodings from file
-        known_encodings = []
-        with open("all_encodings.txt", "r") as f:
-            encodings = f.readlines()
-            known_encodings = [np.array([float(x) for x in encoding.split(",")[:-1]]) for encoding in encodings]
-        return known_encodings
-
     def enter_button_click(self):
+        # Check password confirmation
+        password_dialog = PasswordDialog(self)
+        if not password_dialog.get_password_confirmation():
+            return
+
         # Get the input from the boxes
         input1 = self.input_box1.text()
         input2 = self.input_box2.text()
 
-        # Perform some action based on the input
-        print(f"Input 1: {input1}")
-        print(f"Input 2: {input2}")
+        # Placeholder for processing the input values (replace with your logic)
+        if input1 and input2:
+            self.process_input_values(input1, input2)
+            QMessageBox.information(self, "Success", "Inputs processed successfully.")
+        else:
+            QMessageBox.warning(self, "Error", "Please fill in both input boxes.")
+
+    def process_input_values(self, input1, input2):
+        # Placeholder for processing input values (replace with your logic)
+        print(f"Processing Input 1: {input1}")
+        print(f"Processing Input 2: {input2}")
 
     def close_button_click(self):
         # Stop the camera timer
@@ -119,6 +134,7 @@ class MainWindow(QtWidgets.QWidget):
 
         # Close the application
         self.close()
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
