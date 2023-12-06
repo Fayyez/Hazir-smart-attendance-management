@@ -3,3 +3,4 @@ PyQt5
 PyQt5Designer
 numpy
 face-recognition
+pyttsx3
