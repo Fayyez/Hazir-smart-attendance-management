@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtGui import QFont, QTextCharFormat
 
 class Ui_a(object):
     def setupUi(self, a):
@@ -67,20 +67,12 @@ class Ui_a(object):
         self.main_widget.setStyleSheet(" border-radius: 30px; \n"
 " background-color: black; ")
         self.main_widget.setObjectName("main_widget")
-        self.label_2 = QtWidgets.QLabel(self.main_widget)
-        self.label_2.setGeometry(QtCore.QRect(696, 20, 141, 41))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border: 2px solid white; \n"
-"color: white;\n"
-"background-color: black;\n"
-"border-radius:10px\n"
-"")
-        self.label_2.setObjectName("label_2")
+
         self.start_session_button = QtWidgets.QPushButton(self.main_widget)
         self.start_session_button.setGeometry(QtCore.QRect(580, 260, 211, 81))
         font = QtGui.QFont()
@@ -115,18 +107,13 @@ class Ui_a(object):
 "")
         self.pushButton.setText("")
         self.pushButton.setObjectName("pushButton")
-        self.label_3 = QtWidgets.QLabel(self.main_widget)
-        self.label_3.setGeometry(QtCore.QRect(10, 550, 131, 41))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.label_3.setFont(font)
-        self.label_3.setStyleSheet("color:white")
-        self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.main_widget)
-        self.label_4.setGeometry(QtCore.QRect(70, 90, 191, 81))
+        self.label_4.setGeometry(QtCore.QRect(60, 90, 191, 81))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
         font.setPointSize(16)
@@ -225,6 +212,13 @@ class Ui_a(object):
 "background-color: black;\n"
 "border-radius:10px\n"
 "")
+        
+        self.romm_details_self_write = QtWidgets.QTextBrowser(self.centralwidget)
+        self.romm_details_self_write.setGeometry(QtCore.QRect(40, 220, 311, 171))
+        self.romm_details_self_write.setStyleSheet("background-color : black;")
+        self.romm_details_self_write.setPalette(palette)
+        self.romm_details_self_write.setObjectName("romm_details_self_write")
+        self.romm_details_self_write.raise_()
         self.label.setObjectName("label")
         self.navigation_bar = QtWidgets.QLabel(self.centralwidget)
         self.navigation_bar.setGeometry(QtCore.QRect(70, 10, 181, 31))
@@ -258,13 +252,12 @@ class Ui_a(object):
     def retranslateUi(self, a):
         _translate = QtCore.QCoreApplication.translate
         a.setWindowTitle(_translate("a", "attendance"))
-        self.label_2.setText(_translate("a", "  Members:"))
         self.start_session_button.setText(_translate("a", "Start Session"))
         self.get_last_report_button.setText(_translate("a", "Get Last Report"))
-        self.label_3.setText(_translate("a", "     Add Member"))
         self.label_4.setText(_translate("a", "Room Details"))
-        self.label.setText(_translate("a", "      Room Title"))
+        self.label.setText(_translate("a", "  Room Title"))
         self.navigation_bar.setText(_translate("a", "HomePage -> RoomInfo"))
+        self.romm_details_self_write.setText(_translate("a","Probability and Statistics"))
 
 
 if __name__ == "__main__":
