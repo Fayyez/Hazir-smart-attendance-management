@@ -3,3 +3,5 @@ PyQt5
 PyQt5Designer
 numpy
 face-recognition
+openpyxl
+pandas
