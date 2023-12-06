@@ -10,9 +10,75 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QEvent
 from PyQt5.QtGui import QPixmap
-from dragDropwindow import AppDemo
+# from dragDropwindow import AppDemo
+# from dragDropwindow import ImageLabel
+class ImageLabel(QLabel):
+    def __init__(self):
+        super().__init__()
+
+        self.setAlignment(Qt.AlignCenter)
+        self.setText('\n\n Drop Image Here \n\n')
+        self.setStyleSheet('''
+            QLabel{
+                border: 4px dashed #aaa
+            }
+        ''')
+
+    def setPixmap(self, image):
+        super().setPixmap(image)
+
+class AppDemo(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.resize(200, 200)
+        self.setAcceptDrops(True)
+
+        mainLayout = QVBoxLayout()
+
+        self.photoViewer = ImageLabel()
+        mainLayout.addWidget(self.photoViewer)
+
+        self.setLayout(mainLayout)
+
+    def setupUi(self,MainWindow):
+        self.resize(200, 200)
+        self.setAcceptDrops(True)
+
+        mainLayout = QVBoxLayout()
+
+        self.photoViewer = ImageLabel()
+        mainLayout.addWidget(self.photoViewer)
+
+        self.setLayout(mainLayout)
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasImage:
+            event.accept()
+        else:
+            event.ignore()
+
+    def dragMoveEvent(self, event):
+        if event.mimeData().hasImage:
+            event.accept()
+        else:
+            event.ignore()
+
+    def dropEvent(self, event):
+        if event.mimeData().hasImage:
+            event.setDropAction(Qt.CopyAction)
+            file_path = event.mimeData().urls()[0].toLocalFile()
+            self.set_image(file_path)
+
+            event.accept()
+        else:
+            event.ignore()
+
+    def set_image(self, file_path):
+        self.photoViewer.setPixmap(QPixmap(file_path))
+        pic=QPixmap(file_path)
+            
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -319,7 +385,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.upload_pic_button.clicked.connect(self.showDropBox)
+        #self.upload_pic_button.clicked.connect(self.showDropBox)
 
 
         self.retranslateUi(MainWindow)
@@ -342,14 +408,22 @@ class Ui_MainWindow(object):
         self.face_detected_heading.setText(_translate("MainWindow", "Face Detetcted"))
         self.label_2.setText(_translate("MainWindow", "status"))
         self.status_heading.setText(_translate("MainWindow", "Status"))
-       # self.upload_pic_button.clicked.connect(self.showDropBox)
+        #self.upload_pic_button.clicked.connect(self.showDropBox)
+    
+    def pop_up(self):  # Added 'self' as the first parameter
+        pop = AppDemo()
+        dialog = QtWidgets.QDialog()  # Use QDialog instead of QMainWindow
+        pop.setupUi(dialog)
+        dialog.exec_()  # Use exec_() instead of show() for QDialog
 
-    def showDropBox(self,event):
-        AppDemo = QtWidgets.QDialog()  # Use QDialog instead of QMainWindow
-        ui_ddwin = AppDemo()
-        ui_ddwin.setupUi(self.dragDropwindow)
-        AppDemo.exec_()
-        
+
+    # def pop_up(event):
+    #     pop = AppDemo()
+    #     win = QtWidgets.QMainWindow()
+    #     pop.setupUi(win)
+    #     pop.show()
+    #     sys.exit(win.exec_())
+
 
 if __name__ == "__main__":
     import sys
@@ -358,4 +432,11 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
+    ui.upload_pic_button.clicked.connect(ui.pop_up)
+    
     sys.exit(app.exec_())
+
+
+
+    
+   

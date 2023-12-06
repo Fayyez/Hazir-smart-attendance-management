@@ -22,7 +22,18 @@ class ImageLabel(QLabel):
 class AppDemo(QWidget):
     def __init__(self):
         super().__init__()
-        self.resize(400, 400)
+        self.resize(200, 200)
+        self.setAcceptDrops(True)
+
+        mainLayout = QVBoxLayout()
+
+        self.photoViewer = ImageLabel()
+        mainLayout.addWidget(self.photoViewer)
+
+        self.setLayout(mainLayout)
+
+    def setupUi(self,MainWindow):
+        self.resize(200, 200)
         self.setAcceptDrops(True)
 
         mainLayout = QVBoxLayout()
@@ -56,8 +67,11 @@ class AppDemo(QWidget):
 
     def set_image(self, file_path):
         self.photoViewer.setPixmap(QPixmap(file_path))
+        pic=QPixmap(file_path)
+            
 
-app = QApplication(sys.argv)
-demo = AppDemo()
-demo.show()
-sys.exit(app.exec_())
+
+# app = QApplication(sys.argv)
+# demo = AppDemo()
+# demo.show()
+# sys.exit(app.exec_())
