@@ -15,7 +15,6 @@ def verification(user_id, user_password, login_with_face):
 def mark_attendance(Verified_students):
  # mark the attendance of the verified students in the database
  pass
-
 def generate_report(student_data, file_name):
     # we will have to get the student data from the database in the form of a list of list as shown below
     # students = [
@@ -39,4 +38,14 @@ def generate_report(student_data, file_name):
     
     print(f"Excel file '{excel_file_path}' has been generated successfully.")
     # how to display this in screen need to be implemnted
-
+def get_classrooms(teacher_id):
+    # get the classrooms from the database with respect to teacher id
+    # will be returning a list of classrooms
+    # this same function will also be required by the dashboard screen so that 
+    # it can display the classroom cards
+    pass
+def get_students(classroom_id):
+    # get the students from the database with respect to classroom id
+    # will be returning a list of students
+    # this same function will also be required by the room info page to add the total count of students
+    pass

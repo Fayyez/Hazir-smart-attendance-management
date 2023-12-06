@@ -12,11 +12,6 @@ class Teacher:
     def __repr__(self):
         return f"Teacher({self.name}, {self.username}, {self.password})"
     
-    def verify(self, Teachers_arr):
-        for teacher in Teachers_arr:
-            if teacher.username == self.username and teacher.password == self.password:
-                return teacher
-        return False
     
 class ClassRoom:
     title: str = ""
