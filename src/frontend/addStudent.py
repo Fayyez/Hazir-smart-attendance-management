@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
+from dragDropwindow import AppDemo
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -318,6 +319,8 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.upload_pic_button.clicked.connect(self.showDropBox)
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -341,69 +344,12 @@ class Ui_MainWindow(object):
         self.status_heading.setText(_translate("MainWindow", "Status"))
        # self.upload_pic_button.clicked.connect(self.showDropBox)
 
-    # def showDropBox(self,event):
+    def showDropBox(self,event):
+        AppDemo = QtWidgets.QDialog()  # Use QDialog instead of QMainWindow
+        ui_ddwin = AppDemo()
+        ui_ddwin.setupUi(self.dragDropwindow)
+        AppDemo.exec_()
         
-    #     demo = AppDemo()
-    #     demo.show()
-        
-    
-        
-class ImageLabel(QLabel):
-    def __init__(self):
-        super().__init__()
-
-        self.setAlignment(Qt.AlignCenter)
-        self.setText('\n\n Drop Image Here \n\n')
-        self.setStyleSheet('''
-            QLabel{
-                border: 4px dashed #aaa
-            }
-        ''')
-
-    def setPixmap(self, image):
-        super().setPixmap(image)
-
-class AppDemo(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.resize(400, 400)
-        self.setAcceptDrops(True)
-
-        mainLayout = QVBoxLayout()
-
-        self.photoViewer = ImageLabel()
-        mainLayout.addWidget(self.photoViewer)
-
-        self.setLayout(mainLayout)
-
-    def dragEnterEvent(self, event):
-        if event.mimeData().hasImage:
-            event.accept()
-        else:
-            event.ignore()
-
-    def dragMoveEvent(self, event):
-        if event.mimeData().hasImage:
-            event.accept()
-        else:
-            event.ignore()
-
-    def dropEvent(self, event):
-        if event.mimeData().hasImage:
-            event.setDropAction(Qt.CopyAction)
-            file_path = event.mimeData().urls()[0].toLocalFile()
-            self.set_image(file_path)
-
-            event.accept()
-        else:
-            event.ignore()
-
-    def set_image(self, file_path):
-        self.photoViewer.setPixmap(QPixmap(file_path))
-       
-
-
-
 
 if __name__ == "__main__":
     import sys
