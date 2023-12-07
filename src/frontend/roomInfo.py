@@ -277,6 +277,12 @@ class Ui_a(object):
         self.start_attendance_button.setObjectName("start_attendance_button")
         self.get_last_report_button = QtWidgets.QPushButton(self.centralwidget)
         self.get_last_report_button.setGeometry(QtCore.QRect(600, 360, 201, 51))
+
+
+        self.close_button=QtWidgets.QPushButton(self.centralwidget)
+        self.close_button.setGeometry(QtCore.QRect(910, 10, 71, 61))
+        self.close_button.setText("Close")
+
         font = QtGui.QFont()
         font.setPointSize(14)
         self.get_last_report_button.setFont(font)
@@ -297,6 +303,7 @@ class Ui_a(object):
         self.room_detail_heading.setObjectName("room_detail_heading")
         self.romm_details_self_write = QtWidgets.QTextBrowser(self.centralwidget)
         self.romm_details_self_write.setGeometry(QtCore.QRect(30, 220, 311, 171))
+
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -363,6 +370,7 @@ class Ui_a(object):
         self.statusbar.setObjectName("statusbar")
         a.setStatusBar(self.statusbar)
 
+        self.close_button.clicked.connect(self.close_button_click)
         self.retranslateUi(a)
         QtCore.QMetaObject.connectSlotsByName(a)
 
@@ -389,6 +397,9 @@ class Ui_a(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.current_date_text.setText(_translate("a", "07/12/2023"))
+    def close_button_click(self):
+        print("Close button clicked")
+    # enter here the screen we want to move on after clicking close
 
 
 if __name__ == "__main__":

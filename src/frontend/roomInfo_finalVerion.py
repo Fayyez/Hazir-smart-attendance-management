@@ -107,6 +107,10 @@ class Ui_a(object):
 "")
         self.pushButton.setText("")
         self.pushButton.setObjectName("pushButton")
+        self.close_button=QtWidgets.QPushButton(self.centralwidget)
+        self.close_button.setGeometry(QtCore.QRect(910, 10, 71, 61))
+        self.close_button.setText("Close")
+        self.close_button.setStyleSheet("background-color: white;")
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
         font.setPointSize(12)
@@ -245,9 +249,13 @@ class Ui_a(object):
         self.statusbar = QtWidgets.QStatusBar(a)
         self.statusbar.setObjectName("statusbar")
         a.setStatusBar(self.statusbar)
-
+        self.close_button.clicked.connect(self.close_button_click)
         self.retranslateUi(a)
         QtCore.QMetaObject.connectSlotsByName(a)
+        
+    def close_button_click(self):
+        print("Close button clicked")
+    # enter here the screen we want to move on after clicking close
 
     def retranslateUi(self, a):
         _translate = QtCore.QCoreApplication.translate
