@@ -254,7 +254,6 @@ class Ui_a(object):
         self.start_attendance_button = QtWidgets.QPushButton(self.centralwidget)
         self.start_attendance_button.setGeometry(QtCore.QRect(570, 200, 271, 111))
         self.start_attendance_button.setStyleSheet("background-color : lightblue;")
-        
 
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
@@ -278,6 +277,7 @@ class Ui_a(object):
         self.start_attendance_button.setObjectName("start_attendance_button")
         self.get_last_report_button = QtWidgets.QPushButton(self.centralwidget)
         self.get_last_report_button.setGeometry(QtCore.QRect(600, 360, 201, 51))
+
 
         self.close_button=QtWidgets.QPushButton(self.centralwidget)
         self.close_button.setGeometry(QtCore.QRect(910, 10, 71, 61))
@@ -303,7 +303,7 @@ class Ui_a(object):
         self.room_detail_heading.setObjectName("room_detail_heading")
         self.romm_details_self_write = QtWidgets.QTextBrowser(self.centralwidget)
         self.romm_details_self_write.setGeometry(QtCore.QRect(30, 220, 311, 171))
-        
+
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -369,6 +369,7 @@ class Ui_a(object):
         self.statusbar = QtWidgets.QStatusBar(a)
         self.statusbar.setObjectName("statusbar")
         a.setStatusBar(self.statusbar)
+
         self.close_button.clicked.connect(self.close_button_click)
         self.retranslateUi(a)
         QtCore.QMetaObject.connectSlotsByName(a)

@@ -265,7 +265,6 @@ class Ui_a(object):
         self.label_4.setText(_translate("a", "Room Details"))
         self.label.setText(_translate("a", "  Room Title"))
         self.navigation_bar.setText(_translate("a", "HomePage -> RoomInfo"))
-        #here will be thr room title and details of class room
         self.romm_details_self_write.setText(_translate("a","Probability and Statistics"))
 
 
