@@ -1,10 +1,10 @@
-from utilis import facial_recognition
+from frontend.utilis.facial_recognition import *
 import pandas as pd
 import mysql.connector
 # will be used in login screen
 def verification(user_id, user_password, login_with_face):
     if login_with_face:
-        verified,teacher_id = facial_recognition.verify_face_teacher() # returns true if face is verified and teacher id
+        verified,teacher_id = verify_face_teacher() # returns true if face is verified and teacher id
         # if true then teacher id
         
     else:

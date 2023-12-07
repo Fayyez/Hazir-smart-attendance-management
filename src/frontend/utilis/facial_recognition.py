@@ -2,7 +2,8 @@ import numpy as np
 import face_recognition
 import cv2
 import mysql.connector
-from utilis import *
+import mysql
+from frontend.utilis.Mysql import *
 
 def teacher_encodes():
     # will return an array consisting of the encodings of the teachers
@@ -17,10 +18,9 @@ def teacher_encodes():
     mycursor = mydb.cursor()
     # Execute a SELECT query to fetch the desired attribute from the Teacher table
     mycursor.execute("SELECT face FROM Teacher")
-
     # Fetch all rows from the result
     result = mycursor.fetchall()
-    result = Mysql.loadteacherencodes()
+    result = loadteacherencodes()
     
     return result
 def student_encodes():
@@ -37,7 +37,7 @@ def student_encodes():
 
     # Fetch all rows from the result
    result = mycursor.fetchall()
-   result = Mysql.loadstudentencodes()
+   result = loadstudentencodes()
    return result
 def anyindex(result):
     for index in range(len(result)):

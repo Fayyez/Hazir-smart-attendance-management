@@ -1,8 +1,8 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from utilis.database_functions import verification
-from Classes.classes import *
+from frontend.utilis.database_functions import *
+# from Classes.classes import *
 
 class Ui_Dialog(object):
  def setupUi(self, Dialog):
@@ -419,33 +419,31 @@ class Ui_Dialog(object):
         username = self.usernameicon.text()
         password = self.usernameicon_2.text()
         Teacherid = verification(username,password,False)
-        if Teacherid:
+        if Teacherid[0]== True:
              pass
+         # 
         else:
             msg_box = QtWidgets.QMessageBox()
             msg_box = QMessageBox()
             msg_box.setText(f"Authentication succesfull '{username}'.")
             msg_box.exec_()
         # Display a dialog box with the result
-
+        return Teacherid
  def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label.setText(_translate("Dialog", "          Hazir.io"))
         self.label_2.setText(_translate("Dialog", "Effortless Attendance"))
-        self.usernameicon.setPlaceholderText(_translate("Dialog", "                         Username"))
-        self.usernameicon_2.setPlaceholderText(_translate("Dialog", "                         Password"))
+        self.usernameicon.setPlaceholderText(_translate("Dialog", "Username"))
+        self.usernameicon_2.setPlaceholderText(_translate("Dialog", "Password"))
         self.loginbutton.setText(_translate("Dialog", "Login"))
         self.loginbutton_2.setText(_translate("Dialog", " Login With camera"))
         self.registerbutton.setText(_translate("Dialog", "Register"))
 
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+#  def show_screen(self):
+#     app = QtWidgets.QApplication(sys.argv)
+#     Dialog = QtWidgets.QDialog()
+#     ui = Ui_Dialog()
+#     ui.setupUi(Dialog)
+#     Dialog.show()
+#     sys.exit(app.exec_())
