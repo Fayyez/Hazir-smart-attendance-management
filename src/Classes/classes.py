@@ -11,20 +11,18 @@ class Teacher:
 
     def __repr__(self):
         return f"Teacher({self.name}, {self.username}, {self.password})"
-    
+      
     def verify(self, Teachers_arr):
         for teacher in Teachers_arr:
             if teacher.username == self.username and teacher.password == self.password:
                 return teacher
         return False
-    
 class ClassRoom:
     title: str = ""
     studentount: int = 0
     teacher_id: str = "" # unique_key == teacher.username
     class_id: str = "" # unique_key
-
-    def __init__(self, title, studentcount, teacher_id):
+    def __init__(self, title, studentcount, teacher_id,class_id):
         self.title = title
         self.studentcount = studentcount
         self.teacher_id = teacher_id
