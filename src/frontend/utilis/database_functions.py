@@ -1,10 +1,10 @@
-import facial_recognition
+from frontend.utilis.facial_recognition import *
 import pandas as pd
 import mysql.connector
 # will be used in login screen
 def verification(user_id, user_password, login_with_face):
     if login_with_face:
-        verified,teacher_id = facial_recognition.verify_face_teacher() # returns true if face is verified and teacher id
+        verified,teacher_id = verify_face_teacher() # returns true if face is verified and teacher id
         # if true then teacher id
         
     else:
@@ -130,4 +130,21 @@ def get_students(classroom_id):
     # this same function will also be required by the room info page to add the total count of students
     pass
 
+# my sql py functions
+```
+import numpy as np
+# from assets import student
+# from assets import studentencodes, teacherencodes
+
+def loadteacherencodes():
+    encodesaves = np.loadtxt('teacherencodes.txt', delimiter=',')    
+    print(encodesaves)
+    return encodesaves
+def loadstudentencodes():
+    encodesaves = np.loadtxt('studentencodes.txt', delimiter=',')    
+    return encodesaves
+```
+    a = loadstudentencodes()
 # add main function here
+
+

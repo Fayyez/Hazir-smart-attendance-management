@@ -1,8 +1,9 @@
+
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from frontend.utilis.database_functions import *
-# from Classes.classes import *
+from homepage import Ui_homepage
+
 
 class Ui_Dialog(object):
  def setupUi(self, Dialog):
@@ -13,7 +14,6 @@ class Ui_Dialog(object):
         self.frame.setGeometry(QtCore.QRect(-1, 0, 1001, 700))
         self.frame.setStyleSheet("background-color: #8d5293;\n"
 "")
-        
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -418,32 +418,58 @@ class Ui_Dialog(object):
         # Get the entered username and password from line edits
         username = self.usernameicon.text()
         password = self.usernameicon_2.text()
-        Teacherid = verification(username,password,False)
-        if Teacherid[0]== True:
-             pass
-         # 
-        else:
-            msg_box = QtWidgets.QMessageBox()
-            msg_box = QMessageBox()
-            msg_box.setText(f"Authentication succesfull '{username}'.")
-            msg_box.exec_()
+
+        # Call a function to check credentials and get the number of classes
+        num_classes = self.authenticate_user(username, password)
+
         # Display a dialog box with the result
-        return Teacherid
+        msg_box = QtWidgets.QMessageBox()
+        if num_classes > 0:
+              homepage = QtWidgets.QDialog()  # Use QDialog instead of QMainWindow
+              ui_homepage = Ui_homepage()
+              ui_homepage.setupUi(homepage, num_classes)
+              homepage.exec_()  # Use exec_() instead of show() for dialog-based windows
+              Dialog.accept()  # Accept the login dialog only if authentication is successful
+        #     homepage = QtWidgets.QMainWindow()
+        #     ui_homepage = Ui_homepage()
+        #     ui_homepage.setupUi(homepage, num_classes)
+        #     homepage.show()
+        #     Dialog.accept()
+        
+        else:
+           msg_box = QMessageBox()
+        msg_box.setText(f"Authentication failed for user '{username}'.")
+        msg_box.exec_()  
+        
+
+
+ def authenticate_user(self, username, password):
+        # Perform authentication logic here
+        # For demonstration purposes, a simple check is done (replace with your authentication logic)
+        if username == "ali" and password == "123":
+            # Replace this with your logic to get the number of classes for the user
+            return 4  # Example value, replace with actual number of classes for the user
+        else:
+            return 0  # Authentication failed, return 0 classes
+       
+
  def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label.setText(_translate("Dialog", "          Hazir.io"))
         self.label_2.setText(_translate("Dialog", "Effortless Attendance"))
-        self.usernameicon.setPlaceholderText(_translate("Dialog", "Username"))
-        self.usernameicon_2.setPlaceholderText(_translate("Dialog", "Password"))
+        self.usernameicon.setPlaceholderText(_translate("Dialog", "                         Username"))
+        self.usernameicon_2.setPlaceholderText(_translate("Dialog", "                         Password"))
         self.loginbutton.setText(_translate("Dialog", "Login"))
         self.loginbutton_2.setText(_translate("Dialog", " Login With camera"))
         self.registerbutton.setText(_translate("Dialog", "Register"))
 
-#  def show_screen(self):
-#     app = QtWidgets.QApplication(sys.argv)
-#     Dialog = QtWidgets.QDialog()
-#     ui = Ui_Dialog()
-#     ui.setupUi(Dialog)
-#     Dialog.show()
-#     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
