@@ -23,6 +23,8 @@ class ClassRoom:
     studentount: int = 0
     teacher_id: str = "" # unique_key == teacher.username
     class_id: str = "" # unique_key
+    description: str = ""
+    
     def __init__(self, title, studentcount, teacher_id,class_id):
         self.title = title
         self.studentcount = studentcount
