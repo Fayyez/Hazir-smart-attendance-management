@@ -130,4 +130,21 @@ def get_students(classroom_id):
     # this same function will also be required by the room info page to add the total count of students
     pass
 
+# my sql py functions
+```
+import numpy as np
+# from assets import student
+# from assets import studentencodes, teacherencodes
+
+def loadteacherencodes():
+    encodesaves = np.loadtxt('teacherencodes.txt', delimiter=',')    
+    print(encodesaves)
+    return encodesaves
+def loadstudentencodes():
+    encodesaves = np.loadtxt('studentencodes.txt', delimiter=',')    
+    return encodesaves
+```
+    a = loadstudentencodes()
 # add main function here
+
+
