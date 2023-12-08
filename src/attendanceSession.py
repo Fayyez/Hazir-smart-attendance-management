@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtWidgets, QtCore, QtGui
 import cv2
 from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
+<<<<<<< HEAD:src/attendanceSession.py
 import face_recognition
 
 def student_encodes():
@@ -9,6 +10,8 @@ def student_encodes():
 
 def anyindex(result) -> int :
     return 5
+=======
+>>>>>>> ab2026d78a1bfedfeeca7a6a1a4d380401bed886:src/frontend/attendanceSession.py
 
 
 class PasswordDialog(QDialog):
@@ -40,12 +43,20 @@ class PasswordDialog(QDialog):
 
 
 class MainWindow(QtWidgets.QWidget):
+<<<<<<< HEAD:src/attendanceSession.py
     cap = None
     timer = None
     heading = None
 
     def __init__(self):
         super().__init__()
+=======
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+>>>>>>> ab2026d78a1bfedfeeca7a6a1a4d380401bed886:src/frontend/attendanceSession.py
         # Set main window size
         self.setGeometry(300, 300, 1000, 700)
         self.setWindowTitle("My Application")
@@ -92,6 +103,7 @@ class MainWindow(QtWidgets.QWidget):
         self.enter_button.clicked.connect(self.enter_button_click)
         self.close_button.clicked.connect(self.close_button_click)
 
+<<<<<<< HEAD:src/attendanceSession.py
     def update_camera_frame(self):
         # Capture frame-by-frame
         ret, frame = self.cap.read()
@@ -101,6 +113,24 @@ class MainWindow(QtWidgets.QWidget):
         frame = cv2.resize(frame, (581, 361))
         # Convert frame to QImage
         image = QtGui.QImage(frame.data, frame.shape[1], frame.shape[0], frame.strides[0], QtGui.QImage.Format_RGB888)
+=======
+        # Show the main window
+        self.show()
+
+    def update_camera_frame(self):
+        # Capture frame-by-frame
+        ret, frame = self.cap.read()
+
+        # Convert frame to RGB format
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        # Resize frame to fit the camera frame size
+        frame = cv2.resize(frame, (581, 361))
+
+        # Convert frame to QImage
+        image = QtGui.QImage(frame.data, frame.shape[1], frame.shape[0], frame.strides[0], QtGui.QImage.Format_RGB888)
+
+>>>>>>> ab2026d78a1bfedfeeca7a6a1a4d380401bed886:src/frontend/attendanceSession.py
         # Display the frame in the camera label
         self.camera_label.setPixmap(QtGui.QPixmap.fromImage(image))
 
@@ -139,6 +169,7 @@ class MainWindow(QtWidgets.QWidget):
         # Close the application
         self.close()
 
+<<<<<<< HEAD:src/attendanceSession.py
     app = QtWidgets.QApplication(sys.argv)
     window = QtWidgets.QMainWindow()
     ui = MainWindow()
@@ -172,3 +203,10 @@ class MainWindow(QtWidgets.QWidget):
 
     sys.exit(app.exec_())#
 
+=======
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindow()
+    sys.exit(app.exec_())
+>>>>>>> ab2026d78a1bfedfeeca7a6a1a4d380401bed886:src/frontend/attendanceSession.py
