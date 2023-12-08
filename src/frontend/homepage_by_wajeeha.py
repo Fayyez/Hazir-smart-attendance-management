@@ -130,7 +130,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     homepage = QtWidgets.QDialog()
     ui = Ui_homepage()
-    ui.setupUi(homepage, num_classes=4)
+    ui.setupUi(homepage, num_classes=10)
     homepage.show()
     sys.exit(app.exec_())
     
