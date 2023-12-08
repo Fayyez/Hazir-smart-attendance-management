@@ -17,6 +17,7 @@ class Teacher:
             if teacher.username == self.username and teacher.password == self.password:
                 return teacher
         return False
+
 class ClassRoom:
     title: str = ""
     studentount: int = 0
@@ -33,7 +34,7 @@ class ClassRoom:
 class Student:
     name: str
     rollno: int # unique_key
-    class_id: str # unique_key == class.class_id
+    class_id: list # unique_key == class.class_id
     face: float = [] # face float for facial recognition
 
     def __init__(self, name, rollno, class_id):
