@@ -1,9 +1,7 @@
 import numpy as np
 import face_recognition
 import cv2
-import mysql.connector
-import mysql
-from frontend.utilis.Mysql import *
+#from frontend.utilis.Mysql import *
 
 def teacher_encodes():
     # will return an array consisting of the encodings of the teachers
@@ -39,7 +37,7 @@ def student_encodes():
    result = mycursor.fetchall()
    result = loadstudentencodes()
    return result
-def anyindex(result):
+def anyindex(result) -> int :
     for index in range(len(result)):
         if result[index]:
             return index
@@ -79,12 +77,13 @@ def verify_face_teacher():
      
 def verify_face_students():
     # camera opened
-    capImg = cv2.VideoCapture(0)  
-    capImg.set(cv2.CAP_PROP_FPS, 120)
+    a = 3
+    cap = cv2.VideoCapture(0)  
+    cap.set(cv2.CAP_PROP_FPS, 90)
 
     Attendance = [] # index of students verified as they are places in the database
     while True:
-            ret, img = capImg.read()  # Capture a frame from the camera
+            ret, img = cap.read()  # Capture a frame from the camera
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             face_locations = face_recognition.face_locations(img)  # Detecting the face
 
@@ -99,16 +98,17 @@ def verify_face_students():
                     if index in Attendance:
                        cv2.putText(img, 'student already Verified', (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                     else:    
-                     if index >= 0:
+                     if index != -1:
                         cv2.putText(img, 'student Verified', (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                         Attendance.append(index)
                         break
                      else:
                         cv2.putText(img, 'student not verified', (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-            cv2.imshow('result', img)
+            # cv2.imshow('result', img)
             if cv2.waitKey(1) & 0xFF == 27: # to end the show 
              break
-    capImg.release()
+
+    cap.release()
     cv2.destroyAllWindows()
     return Attendance
 
