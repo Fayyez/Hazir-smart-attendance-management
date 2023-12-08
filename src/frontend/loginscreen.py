@@ -1,10 +1,11 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from frontend.utilis.database_functions import *
+# from frontend.utilis.database_functions import *
 # from Classes.classes import *
 
 class Ui_Dialog(object):
+ 
  def setupUi(self, Dialog):
         
         Dialog.setObjectName("Dialog")
@@ -414,6 +415,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+ 
  def check_credentials(self):
         # Get the entered username and password from line edits
         username = self.usernameicon.text()
@@ -440,10 +442,11 @@ class Ui_Dialog(object):
         self.loginbutton_2.setText(_translate("Dialog", " Login With camera"))
         self.registerbutton.setText(_translate("Dialog", "Register"))
 
-#  def show_screen(self):
-#     app = QtWidgets.QApplication(sys.argv)
-#     Dialog = QtWidgets.QDialog()
-#     ui = Ui_Dialog()
-#     ui.setupUi(Dialog)
-#     Dialog.show()
-#     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+        app = QtWidgets.QApplication(sys.argv)
+        Dialog = QtWidgets.QDialog()
+        ui = Ui_Dialog()
+        ui.setupUi(Dialog)
+        Dialog.show()
+        sys.exit(app.exec_())
