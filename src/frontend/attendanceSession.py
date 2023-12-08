@@ -2,6 +2,13 @@ import sys
 from PyQt5 import QtWidgets, QtCore, QtGui
 import cv2
 from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
+import face_recognition
+
+def student_encodes():
+   return [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
+
+def anyindex(result) -> int :
+    return 5
 
 
 class PasswordDialog(QDialog):
@@ -33,11 +40,12 @@ class PasswordDialog(QDialog):
 
 
 class MainWindow(QtWidgets.QWidget):
+    cap = None
+    timer = None
+    heading = None
+
     def __init__(self):
         super().__init__()
-        self.init_ui()
-
-    def init_ui(self):
         # Set main window size
         self.setGeometry(300, 300, 1000, 700)
         self.setWindowTitle("My Application")
@@ -84,22 +92,15 @@ class MainWindow(QtWidgets.QWidget):
         self.enter_button.clicked.connect(self.enter_button_click)
         self.close_button.clicked.connect(self.close_button_click)
 
-        # Show the main window
-        self.show()
-
     def update_camera_frame(self):
         # Capture frame-by-frame
         ret, frame = self.cap.read()
-
         # Convert frame to RGB format
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
         # Resize frame to fit the camera frame size
         frame = cv2.resize(frame, (581, 361))
-
         # Convert frame to QImage
         image = QtGui.QImage(frame.data, frame.shape[1], frame.shape[0], frame.strides[0], QtGui.QImage.Format_RGB888)
-
         # Display the frame in the camera label
         self.camera_label.setPixmap(QtGui.QPixmap.fromImage(image))
 
@@ -138,8 +139,36 @@ class MainWindow(QtWidgets.QWidget):
         # Close the application
         self.close()
 
-
-if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    window = MainWindow()
-    sys.exit(app.exec_())
+    window = QtWidgets.QMainWindow()
+    ui = MainWindow()
+    Attendance = [] # index of students verified as they are places in the database
+    # ui.setupUi(window)
+    ui.show()
+    while True:
+        ret, img = ui.cap.read()  # Capture a frame from the camera
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        face_locations = face_recognition.face_locations(img)  # Detecting the face
+
+        for face_location in face_locations:
+            top, right, bottom, left = face_location
+            face_encodings = face_recognition.face_encodings(img, [face_location])  # Encoding the detected face
+
+            if len(face_encodings) > 0:
+                img_encode = face_encodings[0]  # first detected face
+                # result = face_recognition.compare_faces(student_encodes(), img_encode, tolerance=0.5)  # comparing with the saved encoded data and captured frame data
+                # index = anyindex(result) # return the index in the result list where true with respect to the student_encodes() array
+                if 1 in Attendance:
+                   print("student already Verified")
+                else:    
+                    print("student Verified")
+                    
+        # cv2.imshow('result', img)
+        if cv2.waitKey(1) & 0xFF == 27: # to end the show 
+            break
+
+    ui.cap.release()
+    cv2.destroyAllWindows()
+
+    sys.exit(app.exec_())#
+
