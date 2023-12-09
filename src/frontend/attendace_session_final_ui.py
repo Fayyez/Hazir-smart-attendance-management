@@ -216,9 +216,11 @@ class Ui_Dialog(object):
         self.sound_icon_button = QtWidgets.QPushButton(self.attendance_session_dialog)
         self.sound_icon_button.setGeometry(QtCore.QRect(340, 360, 51, 51))
         self.sound_icon_button.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("c:\\Users\\Danish\\Documents\\GitHub\\Hazir-smart-attendance-management\\src\\frontend\\../assets/sound_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.sound_icon_button.setIcon(icon)
+        self.sound_icon = QtGui.QIcon()
+        self.sound_mute_icon = QtGui.QIcon()
+        self.sound_icon.addPixmap(QtGui.QPixmap("c:\\Users\\Danish\\Documents\\GitHub\\Hazir-smart-attendance-management\\src\\frontend\\../assets/sound_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.sound_mute_icon.addPixmap(QtGui.QPixmap("c:\\Users\\Danish\\Documents\\GitHub\\Hazir-smart-attendance-management\\src\\frontend\\../assets/sound_mute.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.sound_icon_button.setIcon(self.sound_icon)
         self.sound_icon_button.setIconSize(QtCore.QSize(60, 60))
         self.sound_icon_button.setDefault(False)
         self.sound_icon_button.setObjectName("sound_icon_button")
@@ -307,7 +309,21 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        #self.sound_icon_button.clicked.connect(self.toggle_sound_icon)
+        #self.end_session_button.clicked.connect(Dialog.close)
+        # when enter button or end session  button is clicked, a pop should appear which should demand the user to enter the password
+        # if the password is correct, the session should end
+        # if the password is incorrect, the session should continue
 
+
+
+
+                
+   
+
+
+             
+    
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
@@ -345,3 +361,14 @@ class Ui_Dialog(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p></body></html>"))
         self.name_input_box.setPlaceholderText(_translate("Dialog", "Enter name"))
         self.end_session_button.setText(_translate("Dialog", "End Session"))
+
+
+if __name__ == "__main__":
+        import sys
+        app = QtWidgets.QApplication(sys.argv)
+        Dialog = QtWidgets.QDialog()
+        Dialog.setStyleSheet("background-color:#2f3c7e")
+        ui = Ui_Dialog()
+        ui.setupUi(Dialog)
+        Dialog.show()
+        sys.exit(app.exec_())
