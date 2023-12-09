@@ -678,9 +678,9 @@ border-radius : 10px; </string>
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -696,18 +696,18 @@ border-radius : 10px; </string>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -734,9 +734,9 @@ border-radius : 10px; </string>
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -752,18 +752,18 @@ border-radius : 10px; </string>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -790,9 +790,9 @@ border-radius : 10px; </string>
       <colorrole role="Button">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -808,18 +808,18 @@ border-radius : 10px; </string>
       <colorrole role="Base">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
       <colorrole role="Window">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>47</red>
-         <green>60</green>
-         <blue>126</blue>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
         </color>
        </brush>
       </colorrole>
@@ -842,6 +842,9 @@ border-radius : 10px; </string>
    </property>
    <property name="mouseTracking">
     <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:red;</string>
    </property>
    <property name="text">
     <string>End Session</string>
