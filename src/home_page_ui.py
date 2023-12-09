@@ -39,14 +39,19 @@ class Ui_homepage(object):
         self.top_widget_2.setStyleSheet("background-color:#fbeaeb")
         self.top_widget_2.setObjectName("top_widget_2")
         self.back_button = QtWidgets.QPushButton(self.top_widget_2)
-        self.back_button.setGeometry(QtCore.QRect(10, 10, 61, 41))
-        self.back_button.setStyleSheet("border-image: url(src\\assets\\previous.PNG) stretch;\n"
+        self.back_button.setGeometry(QtCore.QRect(10, 7, 51, 51))
+        self.back_button.setStyleSheet("border-image: url(D:\\Hazir-smart-attendance-management\\src\\assets\\previous.png) stretch;\n"
 "")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("D:\\Hazir-smart-attendance-management\\src\\assets\\previous.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.back_button.setIconSize(QtCore.QSize(33, 33))
+        self.back_button.setIcon(icon2)
+        
         self.back_button.setText("")
         self.back_button.setObjectName("back_button")
         self.hamburegr_button = QtWidgets.QPushButton(self.top_widget_2)
         self.hamburegr_button.setGeometry(QtCore.QRect(920, 10, 51, 41))
-        self.hamburegr_button.setStyleSheet("border-image: url(src\\assets\\menu.PNG) stretch;\n"
+        self.hamburegr_button.setStyleSheet("border-image: url(src\\assets\\menu.png) stretch;\n"
 "")
         self.hamburegr_button.setText("")
         self.hamburegr_button.setObjectName("hamburegr_button")
@@ -67,13 +72,13 @@ class Ui_homepage(object):
         self.gridLayout.setObjectName("gridLayout")
         self.filter_button = QtWidgets.QPushButton(homepage)
         self.filter_button.setGeometry(QtCore.QRect(550, 90, 51, 41))
-        self.filter_button.setStyleSheet("border-image: url(src\\assets\\clear.PNG) stretch;\n"
+        self.filter_button.setStyleSheet("border-image: url(src\\assets\\clear.png) stretch;\n"
 "")
         self.filter_button.setText("")
         self.filter_button.setObjectName("filter_button")
         self.add_room_pushButton = QtWidgets.QPushButton(homepage)
         self.add_room_pushButton.setGeometry(QtCore.QRect(780, 320, 91, 81))
-        self.add_room_pushButton.setStyleSheet("border-image: url(src\\assets\\ad.PNG) stretch;\n"
+        self.add_room_pushButton.setStyleSheet("border-image: url(src\\assets\\ad.png) stretch;\n"
 "")
         self.add_room_pushButton.setText("")
         self.add_room_pushButton.setObjectName("add_room_pushButton")
