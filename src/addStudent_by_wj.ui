@@ -395,7 +395,7 @@
    <widget class="QLabel" name="navigation_bar">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>10</y>
       <width>300</width>
       <height>31</height>
@@ -800,6 +800,29 @@ border-radius:10px</string>
       <string>   Add Student Page</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>2</x>
+       <y>-3</y>
+       <width>47</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>assets/previous.png</normaloff>assets/previous.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>40</width>
+       <height>35</height>
+      </size>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget_registration_portal" native="true">
     <property name="geometry">
@@ -1011,6 +1034,12 @@ Click here
  to
 upload picture
  </string>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QGroupBox" name="gridBox_cameraView">
