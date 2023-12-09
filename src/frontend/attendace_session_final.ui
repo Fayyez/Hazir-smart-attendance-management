@@ -653,6 +653,32 @@ border-radius : 10px; </string>
      <height>661</height>
     </rect>
    </property>
+   <widget class="QPushButton" name="sound_icon_button">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>360</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../assets/sound_icon.png</normaloff>../assets/sound_icon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QPushButton" name="end_session_button">
    <property name="geometry">
@@ -865,7 +891,7 @@ border-radius : 10px; </string>
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QWidget" name="widget_2" native="true">
+  <widget class="QWidget" name="camera_box" native="true">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -886,7 +912,7 @@ border-radius : 10px; </string>
   <zorder>name_input_box</zorder>
   <zorder>text_to_speech_output_box</zorder>
   <zorder>end_session_button</zorder>
-  <zorder>widget_2</zorder>
+  <zorder>camera_box</zorder>
  </widget>
  <resources/>
  <connections/>
