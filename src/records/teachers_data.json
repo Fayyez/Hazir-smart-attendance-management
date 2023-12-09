@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Wafa basit",
+        "username": "wb_123",
+        "password": 9870,
+        "face": [
+            0.1,
+            0.2,
+            0.3
+        ]
+    },
+    {
+        "name": "Shahbaz Nawaz",
+        "username": "sn_123",
+        "password": 4321,
+        "face": [
+            0.1,
+            0.2,
+            0.3
+        ]
+    },
+    {
+        "name": "zafar iqbal",
+        "username": "zi_543",
+        "password": 3000,
+        "face": [
+            0.1,
+            0.2,
+            0.3
+        ]
+    }
+]

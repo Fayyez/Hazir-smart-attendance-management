@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Probabilty And Statistics",
+        "student_count": 12,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_1"
+    },
+    {
+        "title": "Human And Computer Interaction",
+        "student_count": 8,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_2"
+    },
+    {
+        "title": "Calculs and Geometery",
+        "student_count": 10,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_3"
+    },
+    {
+        "title": "Linear Algebra",
+        "student_count": 5,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_4"
+    },
+    {
+        "title": "Classroom 5",
+        "student_count": 20,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_5"
+    },
+    {
+        "title": "Classroom 6",
+        "student_count": 20,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_6"
+    },
+    {
+        "title": "Classroom 7",
+        "student_count": 20,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_7"
+    },
+    {
+        "title": "Classroom 8",
+        "student_count": 20,
+        "teacher_id": "sn_123",
+        "class_id": "sn_123_class_8"
+    }
+]
