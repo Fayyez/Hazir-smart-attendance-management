@@ -19,10 +19,14 @@ folder_path = os.getcwd() + "/src"
 
 class Ui_homepage(object):
     currentwindow =None
+    classrooms = None
+    x=0;
+    y=0;
     
     def setupUi(self, mainwindow, classrooms: dict):
         print(classrooms)
-        currentwindow = mainwindow
+        self.classrooms = classrooms
+        self.currentwindow = mainwindow
         mainwindow.setObjectName("homepage")
         mainwindow.resize(1000, 700)
         font = QtGui.QFont()
@@ -63,6 +67,7 @@ class Ui_homepage(object):
         self.back_button.setIcon(back_icon)
         self.back_button.setText("")
         self.back_button.setObjectName("back_button")
+        self.back_button.clicked.connect(self.backbutton)
         self.hamburegr_button = QtWidgets.QPushButton(self.top_widget_2)
         self.hamburegr_button.setGeometry(QtCore.QRect(920, 10, 51, 41))
         hamburger_icon = QtGui.QIcon()
@@ -81,44 +86,28 @@ class Ui_homepage(object):
         font.setWeight(75)
         self.homepageLabel.setFont(font)
         self.homepageLabel.setObjectName("homepageLabel")
-        self.gridLayoutWidget = QtWidgets.QWidget(mainwindow)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(119, 170, 541, 471))
-        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setObjectName("gridLayout")
+        
+        self.x=119
+        self.y=170
+        # create push buttons labeled as the title of the Classroom against each classroom in the clasroooms dict
+        # the widhth of the button should be 500 with 200 height
+        # the button should be rounded
+        # background of each card should be cream: #fbeaeb
+        # font size of the text in button should be big and bold
+        j=0
+        for classs in classrooms:
+                self.class_button = QtWidgets.QPushButton(mainwindow)
+                self.class_button.setGeometry(QtCore.QRect(self.x, self.y + j*self.y, 500, 150))
+                self.class_button.setText(f"{classrooms[classs].title}\n Students: {classrooms[classs].studentcount}")
+                self.class_button.setStyleSheet("border-radius: 10px; background-color: #fbeaeb;")
+                self.class_button.clicked.connect(self.cardclicked)
+                j+=1
+        
+        self.car_button = QtWidgets.QPushButton()
+        self.car_button.setStyleSheet("border-radius: 10px;")
+
         ## adding the classrooms to the grid layout
         #create two cards of fisrt 2 value of the classroom dict
-        i= 0
-        for classs in classrooms:
-                # create a card widget
-                card = QtWidgets.QWidget()
-                card.setStyleSheet("background-color: #fbeaeb; border-radius: 10px;")
-                # create a vertical layout for the card
-                verticalLayout = QtWidgets.QVBoxLayout(card)
-                verticalLayout.setObjectName("verticalLayout")
-                # create a label for the class title
-                class_title_label = QtWidgets.QLabel(card)
-                class_title_label.setText(classrooms[classs].title)
-                class_title_label.setStyleSheet("font-size: 20px; font-weight: bold; color: #2f3c7e;")
-                class_title_label.setAlignment(QtCore.Qt.AlignCenter)
-                verticalLayout.addWidget(class_title_label)
-                # create a label for the number of students
-                number_of_students_label = QtWidgets.QLabel(card)
-                number_of_students_label.setText("class id: "+str(classrooms[classs].class_id))
-                number_of_students_label.setStyleSheet("font-size: 15px; color: #2f3c7e;")
-                number_of_students_label.setAlignment(QtCore.Qt.AlignCenter)
-                verticalLayout.addWidget(number_of_students_label)
-                # create a label for the number of students
-                number_of_teachers_label = QtWidgets.QLabel(card)
-                number_of_teachers_label.setText("Number of students: "+str(classrooms[classs].studentount))
-                number_of_teachers_label.setStyleSheet("font-size: 15px; color: #2f3c7e;")
-                number_of_teachers_label.setAlignment(QtCore.Qt.AlignCenter)
-                verticalLayout.addWidget(number_of_teachers_label)
-                # create a label for the number of students
-                # add the card to the grid layout
-                self.gridLayout.addWidget(card, i, 0, 1, 1)
-                i+=1
 
         self.filter_button = QtWidgets.QPushButton(mainwindow)
         self.filter_button.setGeometry(QtCore.QRect(545, 88, 51, 45))
@@ -161,8 +150,29 @@ class Ui_homepage(object):
         # create a boundary for homepageLabel_2
         self.homepageLabel_2.setStyleSheet("border: 2px solid black; border-radius: 10px; background-color: #fbeaeb;")
 
-    #def 
+    def cardclicked(self) :
+        # close the current window and open room info page in the new window
+        from room_infromation_ui import Ui_RoomInfo
+        app = QtWidgets.QApplication(sys.argv)
+        # create nee window
+        window = QtWidgets.QDialog()
+        # load next page
+        page = Ui_RoomInfo()
+        # setup
+        page.setupUi(window)
+        self.currentwindow.close() # close the last window 
+        window.show()
+        window.exec_()
+        sys.exit(app.exec_())
 
+    def backbutton(self):
+        # go back to the login page
+        from login_screen import LoginPage
+        self.currentwindow.close()
+        window = QtWidgets.QMainWindow()
+        ui = LoginPage()
+        ui.setupUi(window)
+        window.show()
 
 if __name__ == "__main__":
     import sys
