@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\frontend\attendace_session_final.ui'
+# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\attendace_session_final.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -217,11 +217,7 @@ class Ui_Dialog(object):
         self.sound_icon_button.setGeometry(QtCore.QRect(340, 360, 51, 51))
         self.sound_icon_button.setText("")
         icon = QtGui.QIcon()
-<<<<<<< HEAD
-        icon.addPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\frontend\\../assets/sound_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-=======
-        icon.addPixmap(QtGui.QPixmap("c:\\Users\\Danish\\Documents\\GitHub\\Hazir-smart-attendance-management\\src\\frontend\\../assets/sound_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
->>>>>>> 3c7d0005a7783dfc68abff7f13c6b902f991c76b
+        icon.addPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../assets/sound_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.sound_icon_button.setIcon(icon)
         self.sound_icon_button.setIconSize(QtCore.QSize(60, 60))
         self.sound_icon_button.setDefault(False)
@@ -349,3 +345,14 @@ class Ui_Dialog(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p></body></html>"))
         self.name_input_box.setPlaceholderText(_translate("Dialog", "Enter name"))
         self.end_session_button.setText(_translate("Dialog", "End Session"))
+
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
