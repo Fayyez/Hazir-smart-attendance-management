@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\addStudent_by_wj.ui'
+# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\add_member_page.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -563,12 +563,3 @@ class Ui_MainWindow(object):
         self.add_button.setShortcut(_translate("MainWindow", "Return"))
         self.face_detected_heading.setText(_translate("MainWindow", "Face Detetcted"))
         self.registration_portal_heading.setText(_translate("MainWindow", "Registration Portal "))
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
