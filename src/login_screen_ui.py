@@ -77,13 +77,13 @@ class Ui_loginscreen(object):
         self.userpic = QtWidgets.QLabel(self.widget)
         self.userpic.setGeometry(QtCore.QRect(20, 100, 71, 61))
         self.userpic.setText("")
-        self.userpic.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\assests\\usericon-removebg-preview.png"))
+        self.userpic.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../../Users/Zulfiqar/Downloads/usericon-removebg-preview.png"))
         self.userpic.setScaledContents(True)
         self.userpic.setObjectName("userpic")
         self.passwordpic = QtWidgets.QLabel(self.widget)
         self.passwordpic.setGeometry(QtCore.QRect(20, 250, 71, 61))
         self.passwordpic.setText("")
-        self.passwordpic.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\assests/passwordicon-removebg-preview.png"))
+        self.passwordpic.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../../Users/Zulfiqar/Downloads/passwordicon-removebg-preview.png"))
         self.passwordpic.setScaledContents(True)
         self.passwordpic.setObjectName("passwordpic")
         self.loginbutton = QtWidgets.QPushButton(self.widget)
@@ -330,7 +330,7 @@ class Ui_loginscreen(object):
         self.passwordpic_2 = QtWidgets.QLabel(self.widget)
         self.passwordpic_2.setGeometry(QtCore.QRect(20, 480, 71, 61))
         self.passwordpic_2.setText("")
-       # self.passwordpic_2.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\assets\\camera_icon(new).png"))
+        self.passwordpic_2.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../../Users/Zulfiqar/Downloads/camera_icon(new).png"))
         self.passwordpic_2.setScaledContents(True)
         self.passwordpic_2.setObjectName("passwordpic_2")
         self.logo_label = QtWidgets.QLabel(loginscreen)
@@ -350,16 +350,9 @@ class Ui_loginscreen(object):
         font.setUnderline(True)
         self.logo_subtext.setFont(font)
         self.logo_subtext.setObjectName("logo_subtext")
-
-        ## setting logo
         self.logo_window = QtWidgets.QGraphicsView(loginscreen)
-        self.logo_window.setGeometry(QtCore.QRect(90, 125, 256, 215))
+        self.logo_window.setGeometry(QtCore.QRect(90, 130, 256, 192))
         self.logo_window.setObjectName("logo_window")
-        logo_path = "src\\assets\\logo.jpg"
-        logo_pixmap = QtGui.QPixmap(logo_path)
-        logo_scene = QtWidgets.QGraphicsScene()
-        logo_scene.addPixmap(logo_pixmap)
-        self.logo_window.setScene(logo_scene)
 
         self.retranslateUi(loginscreen)
         QtCore.QMetaObject.connectSlotsByName(loginscreen)
@@ -377,12 +370,3 @@ class Ui_loginscreen(object):
         self.registerbutton.setText(_translate("loginscreen", "Register now!"))
         self.logo_label.setText(_translate("loginscreen", "       Hazir.io"))
         self.logo_subtext.setText(_translate("loginscreen", "Effortless Attendance"))
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    loginscreen = QtWidgets.QWidget()
-    ui = Ui_loginscreen()
-    ui.setupUi(loginscreen)
-    loginscreen.show()
-    sys.exit(app.exec_())
