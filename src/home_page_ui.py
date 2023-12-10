@@ -152,7 +152,7 @@ class Ui_homepage(object):
 
     def cardclicked(self) :
         # close the current window and open room info page in the new window
-        from room_infromation_ui import Ui_RoomInfo
+        from room_infromation import Ui_RoomInfo
         app = QtWidgets.QApplication(sys.argv)
         # create nee window
         window = QtWidgets.QDialog()
@@ -168,17 +168,12 @@ class Ui_homepage(object):
     def backbutton(self):
         # go back to the login page
         from login_screen import LoginPage
+        app = QtWidgets.QApplication(sys.argv)
         self.currentwindow.close()
-        window = QtWidgets.QMainWindow()
+        window = QtWidgets.QDialog()
         ui = LoginPage()
         ui.setupUi(window)
+        self.currentwindow.close()
         window.show()
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    homepage = QtWidgets.QWidget()
-    ui = Ui_homepage()
-    ui.setupUi(homepage, {'1': ClassRoom('class 1', 8, 'sn_123', '1'), '2': ClassRoom('class 2', 10, 'sn_123', '2'), '5': ClassRoom('class 1', 8, 'sn_123', '1'), '6': ClassRoom('class 1', 8, 'sn_123', '1'),} )
-    homepage.show()
-    sys.exit(app.exec_())
+        window.exec_()
+        sys.exit(app.exec_())
