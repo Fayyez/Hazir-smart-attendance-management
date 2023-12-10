@@ -159,7 +159,7 @@ class Ui_homepage(object):
         # load next page
         page = Ui_RoomInfo()
         # setup
-        page.setupUi(window)
+        page.setupUi(window, self.classrooms)
         self.currentwindow.close() # close the last window 
         window.show()
         window.exec_()

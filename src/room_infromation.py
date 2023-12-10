@@ -314,8 +314,8 @@ class Ui_RoomInfo(object):
         elif action== condition:
             print("conditions clicked")    
 
-        self.retranslateUi(RoomInfo)
-        QtCore.QMetaObject.connectSlotsByName(RoomInfo)
+        self.retranslateUi()
+       # QtCore.QMetaObject.connectSlotsByName()
 
     def addmember(self):
         from add_member_page_ui import MemberForm
@@ -357,9 +357,9 @@ class Ui_RoomInfo(object):
         msg_box.exec_() 
 
 
-    def retranslateUi(self, RoomInfo):
+    def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        RoomInfo.setWindowTitle(_translate("RoomInfo", "Room Information"))
+       # RoomInfo.setWindowTitle(_translate("RoomInfo", "Room Information"))
         self.roomdetailsLabel_2.setText(_translate("RoomInfo", "Room Details"))
         self.addmemberLabel_3.setText(_translate("RoomInfo", "Add Member"))
         self.hometitleLabel.setText(_translate("RoomInfo", "Room Title"))
