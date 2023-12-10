@@ -9,21 +9,30 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Classes.classes import ClassRoom, Student, Teacher
+import sys, os, json
+
+# getting the directory path
+folder_path = os.getcwd() + "/src"
+
 
 
 class Ui_homepage(object):
-    def setupUi(self, homepage):
-        homepage.setObjectName("homepage")
-        homepage.resize(1000, 700)
+    currentwindow =None
+    
+    def setupUi(self, mainwindow, classrooms: list):
+        currentwindow = mainwindow
+        mainwindow.setObjectName("homepage")
+        mainwindow.resize(1000, 700)
         font = QtGui.QFont()
         font.setPointSize(11)
-        homepage.setFont(font)
-        homepage.setStyleSheet("background-color:#2f3c7e")
-        self.verticalScrollBar = QtWidgets.QScrollBar(homepage)
+        mainwindow.setFont(font)
+        mainwindow.setStyleSheet("background-color:#2f3c7e")
+        self.verticalScrollBar = QtWidgets.QScrollBar(mainwindow)
         self.verticalScrollBar.setGeometry(QtCore.QRect(980, 0, 21, 701))
         self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
         self.verticalScrollBar.setObjectName("verticalScrollBar")
-        self.search_line_edit = QtWidgets.QLineEdit(homepage)
+        self.search_line_edit = QtWidgets.QLineEdit(mainwindow)
         self.search_line_edit.setGeometry(QtCore.QRect(260, 90, 271, 41))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
@@ -34,13 +43,16 @@ class Ui_homepage(object):
         self.search_line_edit.setStyleSheet("border-radius:10px;\n"
 "background-color:#fbeaeb")
         self.search_line_edit.setObjectName("search_line_edit")
-        self.top_widget_2 = QtWidgets.QWidget(homepage)
+        self.top_widget_2 = QtWidgets.QWidget(mainwindow)
         self.top_widget_2.setGeometry(QtCore.QRect(0, 0, 981, 61))
         self.top_widget_2.setStyleSheet("background-color:#fbeaeb")
         self.top_widget_2.setObjectName("top_widget_2")
         self.back_button = QtWidgets.QPushButton(self.top_widget_2)
         self.back_button.setGeometry(QtCore.QRect(10, 10, 61, 41))
-        self.back_button.setStyleSheet("border-image: url(/Users/Zulfiqar/Pictures/previous.PNG) stretch;\n"
+        self.back_button.setIconSize(QtCore.QSize(30, 30))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(folder_path+"/assets/back.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.back_button.setIcon(icon)
 "")
         self.back_button.setText("")
         self.back_button.setObjectName("back_button")
@@ -59,25 +71,25 @@ class Ui_homepage(object):
         font.setWeight(75)
         self.homepageLabel.setFont(font)
         self.homepageLabel.setObjectName("homepageLabel")
-        self.gridLayoutWidget = QtWidgets.QWidget(homepage)
+        self.gridLayoutWidget = QtWidgets.QWidget(mainwindow)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(119, 170, 541, 471))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
-        self.filter_button = QtWidgets.QPushButton(homepage)
+        self.filter_button = QtWidgets.QPushButton(mainwindow)
         self.filter_button.setGeometry(QtCore.QRect(550, 90, 51, 41))
         self.filter_button.setStyleSheet("border-image: url(/Users/Zulfiqar/Pictures/clear.PNG) stretch;\n"
 "")
         self.filter_button.setText("")
         self.filter_button.setObjectName("filter_button")
-        self.add_room_pushButton = QtWidgets.QPushButton(homepage)
+        self.add_room_pushButton = QtWidgets.QPushButton(mainwindow)
         self.add_room_pushButton.setGeometry(QtCore.QRect(780, 320, 91, 81))
         self.add_room_pushButton.setStyleSheet("border-image: url(/Users/Zulfiqar/Pictures/ad.PNG) stretch;\n"
 "")
         self.add_room_pushButton.setText("")
         self.add_room_pushButton.setObjectName("add_room_pushButton")
-        self.homepageLabel_2 = QtWidgets.QLabel(homepage)
+        self.homepageLabel_2 = QtWidgets.QLabel(mainwindow)
         self.homepageLabel_2.setGeometry(QtCore.QRect(750, 440, 151, 31))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
@@ -88,8 +100,8 @@ class Ui_homepage(object):
         self.homepageLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.homepageLabel_2.setObjectName("homepageLabel_2")
 
-        self.retranslateUi(homepage)
-        QtCore.QMetaObject.connectSlotsByName(homepage)
+        self.retranslateUi(mainwindow)
+        QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
     def retranslateUi(self, homepage):
         _translate = QtCore.QCoreApplication.translate
@@ -97,3 +109,13 @@ class Ui_homepage(object):
         self.search_line_edit.setPlaceholderText(_translate("homepage", " Search......"))
         self.homepageLabel.setText(_translate("homepage", "Home Page"))
         self.homepageLabel_2.setText(_translate("homepage", "+ Add Room"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    homepage = QtWidgets.QWidget()
+    ui = Ui_homepage()
+    ui.setupUi(homepage)
+    homepage.show()
+    sys.exit(app.exec_())

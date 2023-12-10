@@ -19,12 +19,12 @@ class ClassRoom:
     studentount: int = 0
     teacher_id: str = "" # unique_key == teacher.username
     class_id: str = "" # unique_key
-    description: str = ""
     
-    def __init__(self, title, studentcount, teacher_id,class_id):
+    def __init__(self, title, studentcount, teacher_id, class_id):
         self.title = title
         self.studentcount = studentcount
         self.teacher_id = teacher_id
+        self.class_id = class_id
 
     def __repr__(self):
         return f"ClassRoom({self.title}, {self.studentcount}, {self.teacher_id})"
