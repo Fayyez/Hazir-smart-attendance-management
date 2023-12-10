@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>loginscreen</class>
- <widget class="QDialog" name="loginscreen">
+ <class>logo_picture</class>
+ <widget class="QDialog" name="logo_picture">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -934,14 +934,17 @@ border-radius:10px;
     <string>Effortless Attendance</string>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="logo_window">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>130</y>
-     <width>256</width>
-     <height>192</height>
+     <x>130</x>
+     <y>150</y>
+     <width>171</width>
+     <height>161</height>
     </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

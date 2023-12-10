@@ -1,14 +1,12 @@
-# # # this file basically runs the entire system, renders the relevant screen and calls the relevant functions
-# # # from utilis
-# # # import everything here
-# from frontend.loginscreen import Ui_Dialog
-# if __name__ == "__main__":
-#  screen_stack= []
-#  Login_screen=Ui_Dialog()
-#  screen_stack.append(Login_screen)
-#  teacherid = screen_stack[-1].show_screen()
-#  print(teacherid)
+from login_screen import LoginPage
+import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
 
-
-
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    login_page = LoginPage()
+    mainwindow = QtWidgets.QMainWindow()
+    login_page.setupUi(mainwindow)
+    mainwindow.show()
+    sys.exit(app.exec_())
  

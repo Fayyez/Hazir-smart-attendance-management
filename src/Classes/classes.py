@@ -4,33 +4,23 @@ class Teacher:
     password = ""
     face: float = [] # face float for facial recognition
 
-    def __init__(self, name, username, password):
+    def __init__(self, name, username, password, face):
         self.name = name
         self.username = username
         self.password = password
+        self.face = face
 
     def __repr__(self):
         return f"Teacher({self.name}, {self.username}, {self.password})"
       
-    def verify(self, Teachers_arr):
-        for teacher in Teachers_arr:
-            if teacher.username == self.username and teacher.password == self.password:
-                return teacher
-        return False
-<<<<<<< HEAD
 
-=======
->>>>>>> ab2026d78a1bfedfeeca7a6a1a4d380401bed886
 class ClassRoom:
     title: str = ""
     studentount: int = 0
     teacher_id: str = "" # unique_key == teacher.username
     class_id: str = "" # unique_key
-<<<<<<< HEAD
     description: str = ""
     
-=======
->>>>>>> ab2026d78a1bfedfeeca7a6a1a4d380401bed886
     def __init__(self, title, studentcount, teacher_id,class_id):
         self.title = title
         self.studentcount = studentcount
