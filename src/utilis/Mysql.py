@@ -3,8 +3,7 @@ import numpy as np
 # from assets import studentencodes, teacherencodes
 
 def loadteacherencodes():
-    encodesaves = np.loadtxt('teacherencodes.txt', delimiter=',')    
-    print(encodesaves)
+    encodesaves = np.loadtxt('all_encoding.txt', delimiter=',')    
     return encodesaves
 def loadstudentencodes():
     encodesaves = np.loadtxt('studentencodes.txt', delimiter=',')    

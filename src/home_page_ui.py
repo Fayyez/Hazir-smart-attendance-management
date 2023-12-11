@@ -19,6 +19,7 @@ folder_path = os.getcwd() + "/src"
 
 class Ui_homepage(object):
     currentwindow =None
+
     classrooms = None
     x=0;
     y=0;
@@ -48,13 +49,13 @@ class Ui_homepage(object):
         self.search_line_edit.setStyleSheet("border-radius:10px;\n"
 "background-color:#fbeaeb")
         self.search_line_edit.setObjectName("search_line_edit")
+
         # search completer
         # get a list of class titles from class room dict values
         classTitiles = [classrooms[classs].title for classs in classrooms]
         completer = QtWidgets.QCompleter(classTitiles)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.search_line_edit.setCompleter(completer)
-
         self.top_widget_2 = QtWidgets.QWidget(mainwindow)
         self.top_widget_2.setGeometry(QtCore.QRect(0, 0, 981, 61))
         self.top_widget_2.setStyleSheet("background-color:#fbeaeb")
@@ -62,6 +63,7 @@ class Ui_homepage(object):
         self.back_button = QtWidgets.QPushButton(self.top_widget_2)
         self.back_button.setGeometry(QtCore.QRect(10, 10, 61, 41))
         self.back_button.setIconSize(QtCore.QSize(30, 30))
+
         back_icon = QtGui.QIcon()
         back_icon.addPixmap(QtGui.QPixmap(folder_path+"/assets/previous.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.back_button.setIcon(back_icon)
@@ -86,7 +88,7 @@ class Ui_homepage(object):
         font.setWeight(75)
         self.homepageLabel.setFont(font)
         self.homepageLabel.setObjectName("homepageLabel")
-        
+       
         self.x=119
         self.y=170
         # create push buttons labeled as the title of the Classroom against each classroom in the clasroooms dict
@@ -125,6 +127,7 @@ class Ui_homepage(object):
         # increase the size of the icon
         self.add_room_pushButton.setIconSize(QtCore.QSize(60, 60))
         self.add_room_pushButton.setIcon(add_roon_icon)
+
         self.add_room_pushButton.setText("")
         self.add_room_pushButton.setObjectName("add_room_pushButton")
         self.homepageLabel_2 = QtWidgets.QLabel(mainwindow)
