@@ -54,3 +54,7 @@ The process may then be iteratively used for every Issue resolved or feature add
 Every collarborator is advised to write well indented and documented code. This includes writing explanatory code comments and docstrings for every function and class defined. Be sure to write efficient and concise code with meaningful names and type hints where possible. You can view the already submitted code for reference. A vscode extension was used to auto-generate docstrings in google formate, hence providing automation.
 
 This would not only improve the code's readability and understandability but also improve the code's maintainibility and malleability.
+
+
+## License
+This project is licensed under the MIT License - see the LICENSE: ```LICENSE.txt`` file for details.
