@@ -347,10 +347,10 @@ class Ui_RoomInfo(object):
        # QtCore.QMetaObject.connectSlotsByName()
 
     def addmember(self):
-        from add_member_page_ui import AddMemberPage
+        from add_member_page_ui import Ui_MainWindow 
         app = QtWidgets.QApplication(sys.argv)
         window = QtWidgets.QDialog()
-        ui = AddMemberPage()
+        ui = Ui_MainWindow()
         ui.setupUi(window)
         self.currentwindow.close()
         window.show()
