@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\login_screen.ui'
+# Form implementation generated from reading ui file 'login_screen.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,19 +9,42 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+import sys
+import os
+import json
+from Classes.classes import Teacher, ClassRoom
+from home_page_ui import Ui_homepage
+
+# global variables
+# path to directory
+folder_path = os.getcwd() + "/src"
+# all teahers data
+teachers = {}
+classrooms = {}
+teacher_json_path = folder_path + "/records/teachers_data.json"
+classroom_json_path = folder_path + "/records/classrooms_data.json"
+# reading all the teachers
+with open(teacher_json_path, "r") as f:
+        data = json.load(f)
+        teachers = {teacher['username']: Teacher(teacher['name'], teacher['username'], teacher['password'], teacher['face']) for teacher in data}
 
 
-class Ui_loginscreen(object):
-    def setupUi(self, loginscreen):
-        loginscreen.setObjectName("loginscreen")
-        loginscreen.resize(900, 700)
-        loginscreen.setLayoutDirection(QtCore.Qt.LeftToRight)
-        loginscreen.setStyleSheet("background-color:#2f3c7e\n"
-"")
-        self.widget = QtWidgets.QWidget(loginscreen)
+print(teachers)
+
+class LoginPage(object):
+    loginbutton=None
+    currentwindow=None
+    
+    def setupUi(self, mainwindow):
+        self.currentwindow=mainwindow
+        mainwindow.setObjectName("logo_picture")
+        mainwindow.resize(1000, 700)
+        mainwindow.setLayoutDirection(QtCore.Qt.LeftToRight)
+        mainwindow.setStyleSheet("background-color:#2f3c7e\n" "")
+        self.widget = QtWidgets.QWidget(mainwindow)
         self.widget.setGeometry(QtCore.QRect(420, 30, 441, 641))
-        self.widget.setStyleSheet("background-color:#fbeaeb;\n"
-"border-radius:30px;")
+        self.widget.setStyleSheet("background-color:#fbeaeb;\n" "border-radius:30px;")
         self.widget.setObjectName("widget")
         self.usernameLabel = QtWidgets.QLabel(self.widget)
         self.usernameLabel.setGeometry(QtCore.QRect(150, 60, 141, 31))
@@ -77,13 +100,13 @@ class Ui_loginscreen(object):
         self.userpic = QtWidgets.QLabel(self.widget)
         self.userpic.setGeometry(QtCore.QRect(20, 100, 71, 61))
         self.userpic.setText("")
-        self.userpic.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../../Users/Zulfiqar/Downloads/usericon-removebg-preview.png"))
+        self.userpic.setPixmap(QtGui.QPixmap(f"{folder_path}/assets/usericon-removebg-preview.png"))
         self.userpic.setScaledContents(True)
         self.userpic.setObjectName("userpic")
         self.passwordpic = QtWidgets.QLabel(self.widget)
         self.passwordpic.setGeometry(QtCore.QRect(20, 250, 71, 61))
         self.passwordpic.setText("")
-        self.passwordpic.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../../Users/Zulfiqar/Downloads/passwordicon-removebg-preview.png"))
+        self.passwordpic.setPixmap(QtGui.QPixmap(f"{folder_path}/assets/passwordicon-removebg-preview.png"))
         self.passwordpic.setScaledContents(True)
         self.passwordpic.setObjectName("passwordpic")
         self.loginbutton = QtWidgets.QPushButton(self.widget)
@@ -164,6 +187,7 @@ class Ui_loginscreen(object):
 "border-radius:10px;\n"
 "")
         self.loginbutton.setObjectName("loginbutton")
+        self.loginbutton.clicked.connect(self.login)
         self.loginbuttonwithcamera = QtWidgets.QPushButton(self.widget)
         self.loginbuttonwithcamera.setGeometry(QtCore.QRect(130, 480, 191, 51))
         palette = QtGui.QPalette()
@@ -330,10 +354,10 @@ class Ui_loginscreen(object):
         self.passwordpic_2 = QtWidgets.QLabel(self.widget)
         self.passwordpic_2.setGeometry(QtCore.QRect(20, 480, 71, 61))
         self.passwordpic_2.setText("")
-        self.passwordpic_2.setPixmap(QtGui.QPixmap("d:\\Hazir-smart-attendance-management\\src\\../../Users/Zulfiqar/Downloads/camera_icon(new).png"))
+        # self.passwordpic_2.setPixmap(QtGui.QPixmap("../../Users/Zulfiqar/Downloads/camera_icon(new).png"))
         self.passwordpic_2.setScaledContents(True)
         self.passwordpic_2.setObjectName("passwordpic_2")
-        self.logo_label = QtWidgets.QLabel(loginscreen)
+        self.logo_label = QtWidgets.QLabel(mainwindow)
         self.logo_label.setGeometry(QtCore.QRect(100, 340, 231, 61))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
@@ -342,7 +366,7 @@ class Ui_loginscreen(object):
         font.setWeight(75)
         self.logo_label.setFont(font)
         self.logo_label.setObjectName("logo_label")
-        self.logo_subtext = QtWidgets.QLabel(loginscreen)
+        self.logo_subtext = QtWidgets.QLabel(mainwindow)
         self.logo_subtext.setGeometry(QtCore.QRect(100, 420, 251, 61))
         font = QtGui.QFont()
         font.setFamily("Sylfaen")
@@ -350,23 +374,65 @@ class Ui_loginscreen(object):
         font.setUnderline(True)
         self.logo_subtext.setFont(font)
         self.logo_subtext.setObjectName("logo_subtext")
-        self.logo_window = QtWidgets.QGraphicsView(loginscreen)
-        self.logo_window.setGeometry(QtCore.QRect(90, 130, 256, 192))
-        self.logo_window.setObjectName("logo_window")
+        self.label = QtWidgets.QLabel(mainwindow)
+        self.label.setGeometry(QtCore.QRect(130, 150, 171, 161))
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.label.setPixmap(QtGui.QPixmap(f"{folder_path}/assets/logo.jpg"))
+        self.label.setScaledContents(True)
+        self.retranslateUi(mainwindow)
+        QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
-        self.retranslateUi(loginscreen)
-        QtCore.QMetaObject.connectSlotsByName(loginscreen)
+    def login(self) -> None:
+        username = self.usernamebox.text()
+        password = int(self.usernamebox_2.text())
+        # get text from user
+        if username in teachers :
+                print(teachers[username], teachers[username].password)
+                if teachers[username].password == password : # if username macthed
+                        print("Login Successful")
+                        
+                        # load all the classrooms with same teacher id
+                        with open(classroom_json_path, "r") as f:
+                                data = json.load(f)
+                                for classroom in data:
+                                        if classroom["teacher_id"] == username:
+                                        # add a new element in the classrooms dictionary, key = class_id and value = ClassRoom object
+                                                classrooms[classroom["class_id"]] = ClassRoom(classroom["title"], classroom["student_count"], classroom["teacher_id"], classroom["class_id"])
+                        print(classrooms)
+                        # open hompepage and hide the last screens
+                        # create new app
+                        app = QtWidgets.QApplication(sys.argv)
+                        # create nee window
+                        window = QtWidgets.QDialog()
+                        # load next page
+                        homepage = Ui_homepage()
+                        # setup
+                        homepage.setupUi(window, classrooms)
+                        self.currentwindow.close() # close the last window 
+                        window.show()
+                        window.exec_()
+                        sys.exit(app.exec_())
+        else:
+                msg_box = QMessageBox()
+                msg_box.setText(f"Invalid username or password. Please try again!")
+                self.usernamebox.setText("")
+                self.usernamebox_2.setText("")
+                msg_box.exec_()  
 
-    def retranslateUi(self, loginscreen):
+    def retranslateUi(self, logo_picture):
         _translate = QtCore.QCoreApplication.translate
-        loginscreen.setWindowTitle(_translate("loginscreen", "LoginScreen"))
-        self.usernameLabel.setText(_translate("loginscreen", " UserName:"))
-        self.passwordlabel.setText(_translate("loginscreen", " Password:"))
-        self.usernamebox.setPlaceholderText(_translate("loginscreen", "Enter Username"))
-        self.usernamebox_2.setPlaceholderText(_translate("loginscreen", "Enter Password"))
-        self.loginbutton.setText(_translate("loginscreen", "Login"))
-        self.loginbuttonwithcamera.setText(_translate("loginscreen", " Login With Camera "))
-        self.usernameLabel_2.setText(_translate("loginscreen", "OR"))
-        self.registerbutton.setText(_translate("loginscreen", "Register now!"))
-        self.logo_label.setText(_translate("loginscreen", "       Hazir.io"))
-        self.logo_subtext.setText(_translate("loginscreen", "Effortless Attendance"))
+        logo_picture.setWindowTitle(_translate("logo_picture", "LoginScreen"))
+        self.usernameLabel.setText(_translate("logo_picture", " UserName:"))
+        self.passwordlabel.setText(_translate("logo_picture", " Password:"))
+        self.usernamebox.setPlaceholderText(_translate("logo_picture", "Enter Username"))
+        self.usernamebox_2.setPlaceholderText(_translate("logo_picture", "Enter Password"))
+        self.loginbutton.setText(_translate("logo_picture", "Login"))
+        self.loginbuttonwithcamera.setText(_translate("logo_picture", " Login With Camera "))
+        self.usernameLabel_2.setText(_translate("logo_picture", "OR"))
+        self.registerbutton.setText(_translate("logo_picture", "Register now!"))
+        self.logo_label.setText(_translate("logo_picture", "       Hazir.io"))
+        self.logo_subtext.setText(_translate("logo_picture", "Seamless Attendance"))
+
+
+

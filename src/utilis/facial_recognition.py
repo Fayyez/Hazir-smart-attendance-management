@@ -69,6 +69,7 @@ def verify_face_teacher():
                 flag = True
                 cv2.putText(img, 'Face Verified', (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
                 return True, index 
+                
     capImg.release()
     cv2.destroyAllWindows()        
     cv2.putText(img, 'Face Not Verified', (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
