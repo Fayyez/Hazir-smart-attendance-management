@@ -309,6 +309,7 @@ class Ui_RoomInfo(object):
         self.addmemberLabel_3.setText("Add Member")
         self.bread_crumbs_label.setText("HomePage->RoomInformation")
         self.start_seesion_button.setText("        Start Session")
+        self.start_seesion_button.clicked.connect(self.startSession)
         self.get_last_report_button.setText("            Get Last Report")
     
     def show_hamburger_menu(self):

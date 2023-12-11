@@ -20,7 +20,7 @@ from Classes.classes import ClassRoom
 # global declarations
 folder_path = getcwd() + "/src"
 print(folder_path)
-sample_classroom = {'sn_123_class_2' : ClassRoom('Human And Computer Interaction', 8, "sn_123", 'sn_123_class_2')}
+sample_classroom = {'sn_123_class_2' : ClassRoom('Human And Computer Interaction', 9, "sn_123", 'sn_123_class_2')}
 
 class Ui_MainWindow(object):
     img_encodes = []
@@ -75,7 +75,7 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.user_icon_button = QtWidgets.QPushButton(self.centralwidget)
+        self.user_icon_button = QtWidgets.QPushButton(MainWindow)
         self.user_icon_button.setGeometry(QtCore.QRect(870, 0, 57, 50))
         self.user_icon_button.setText("")
         icon = QtGui.QIcon()
@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.user_icon_button.setIcon(icon)
         self.user_icon_button.setIconSize(QtCore.QSize(45, 45))
         self.user_icon_button.setObjectName("user_icon_button")
-        self.hamburger_button = QtWidgets.QPushButton(self.centralwidget)
+        self.hamburger_button = QtWidgets.QPushButton(MainWindow)
         self.hamburger_button.setGeometry(QtCore.QRect(930, -10, 61, 61))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
@@ -196,12 +196,12 @@ class Ui_MainWindow(object):
         self.hamburger_button.setIcon(icon1)
         self.hamburger_button.setIconSize(QtCore.QSize(100, 90))
         self.hamburger_button.setObjectName("hamburger_button")
-        self.Horizontal_line_at_top_1 = QtWidgets.QFrame(self.centralwidget)
+        self.Horizontal_line_at_top_1 = QtWidgets.QFrame(MainWindow)
         self.Horizontal_line_at_top_1.setGeometry(QtCore.QRect(0, 42, 1001, 16))
         self.Horizontal_line_at_top_1.setFrameShape(QtWidgets.QFrame.HLine)
         self.Horizontal_line_at_top_1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.Horizontal_line_at_top_1.setObjectName("Horizontal_line_at_top_1")
-        self.navigation_bar = QtWidgets.QLabel(self.centralwidget)
+        self.navigation_bar = QtWidgets.QLabel(MainWindow)
         self.navigation_bar.setGeometry(QtCore.QRect(60, 10, 300, 31))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
@@ -212,8 +212,8 @@ class Ui_MainWindow(object):
         self.navigation_bar.setStyleSheet("color:black\n"
 "")
         self.navigation_bar.setObjectName("navigation_bar")
-        self.background_frame_top_1 = QtWidgets.QFrame(self.centralwidget)
-        self.background_frame_top_1.setGeometry(QtCore.QRect(0, 0, 1001, 51))
+        self.background_frame_top_1 = QtWidgets.QFrame(MainWindow)
+        self.background_frame_top_1.setGeometry(QtCore.QRect(0, 0, 1001, 100))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(251, 234, 235))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -347,8 +347,8 @@ class Ui_MainWindow(object):
         self.pushButton.setIcon(icon2)
         self.pushButton.setIconSize(QtCore.QSize(40, 35))
         self.pushButton.setObjectName("pushButton")
-        self.widget_registration_portal = QtWidgets.QWidget(self.centralwidget)
-        self.widget_registration_portal.setGeometry(QtCore.QRect(40, 80, 921, 581))
+        self.widget_registration_portal = QtWidgets.QWidget(MainWindow)
+        self.widget_registration_portal.setGeometry(QtCore.QRect(40, 80, 921, 981))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.widget_registration_portal.setFont(font)
@@ -612,7 +612,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.enter_button.clicked.connect(self.enter_button_clicked)
         self.add_button.clicked.connect(self.add_member_button_clicked)
-        
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -635,6 +635,7 @@ class Ui_MainWindow(object):
         self.add_button.setShortcut(_translate("MainWindow", "Return"))
         self.face_detected_heading.setText(_translate("MainWindow", "Not Detetcted"))
         self.registration_portal_heading.setText(_translate("MainWindow", "Registration Portal "))
+
 
     def update_frame(self):
         ret, frame = self.video.read()
@@ -661,12 +662,16 @@ class Ui_MainWindow(object):
                                 self.face_detected_heading.setText("Face Registered")
                                 self.count = 1
                                 #set the color to green
-                                self.green_color_hec_code = '#00ff00'
+                                green_color_hec_code = '#00ff00'
                                 self.add_button.setStyleSheet("border: 2px solid black; \n"
 "color: black;\n"
 "background-color:#008000 ;\n"
 "border-radius:10px")
         
+        # print("face saved")
+
+                
+                
         
          
 if __name__ == "__main__" :
@@ -677,10 +682,3 @@ if __name__ == "__main__" :
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
-
-# msg_box = QMessageBox()
-# msg_box.setText(f"Invalid username or password. Please try again!")
-# self.usernamebox.setText("")
-# self.usernamebox_2.setText("")
-# msg_box.exec_()  

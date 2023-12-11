@@ -67,6 +67,7 @@ class Ui_homepage(object):
         back_icon = QtGui.QIcon()
         back_icon.addPixmap(QtGui.QPixmap(folder_path+"/assets/previous.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.back_button.setIcon(back_icon)
+        self.back_button.setIconSize(QtCore.QSize(35, 35))
         self.back_button.setText("")
         self.back_button.setObjectName("back_button")
         self.back_button.clicked.connect(self.backbutton)
@@ -140,6 +141,13 @@ class Ui_homepage(object):
         self.homepageLabel_2.setFont(font)
         self.homepageLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.homepageLabel_2.setObjectName("homepageLabel_2")
+        # set style sheet to show border
+        self.homepageLabel_2.setStyleSheet("border: 2px solid black; border-radius: 10px;")
+        self.bread_crumbs_label = QtWidgets.QLabel(self.top_widget_2)
+        self.bread_crumbs_label.setGeometry(QtCore.QRect(80, 1, 140, 50))
+        self.bread_crumbs_label.setFont(font)
+        self.bread_crumbs_label.setObjectName("bread_crumbs_label")
+        self.bread_crumbs_label.setText("Home Page")
 
         self.retranslateUi(mainwindow)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
@@ -181,4 +189,3 @@ class Ui_homepage(object):
         window.show()
         window.exec_()
         sys.exit(app.exec_())
-
