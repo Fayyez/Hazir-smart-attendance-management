@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\add_member_page.ui'
+# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\addStudent_by_wj.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,30 +9,40 @@
 
 from os import getcwd
 from json import load, dump
+import cv2
+import face_recognition
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtCore import QTimer
 
-folder_path = getcwd()
+
+folder_path = getcwd() + "/src"
 print(folder_path)
 
-class MemberForm(object):
+class Ui_MainWindow(object):
+    img_encodes = []
+    count = 0
     def enter_button_clicked(self):
         self.name = self.name_input_box.text()
         self.id = self.id_input_box.text()
         print(self.name)
         print(self.id)
+        
+    def add_member_button_clicked(self):
+        self.enter_button_clicked() # call the enter button trigger
         with open(f"{folder_path}/records/students_data.json", "r") as f:
                 data = load(f)
-                print(data)
                 student = {
-                      "name": self.name,
-                      "rollno": self.id,
-                      "class_id": "sn_123_class_1",
-                      "face": []
+                        "name": self.name,
+                        "rollno": self.id,
+                        "class_id": "sn_123_class_1",
+                        "face": list(self.img_encodes)
                 }
                 data.append(student)
                 with open(f"{folder_path}/records/students_data.json", "w") as f:
                         dump(data, f, indent=4)
-        
+                print(f"{student} \nadded to json file")
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -551,15 +561,33 @@ class MemberForm(object):
         self.Horizontal_line_at_top_1.raise_()
         self.navigation_bar.raise_()
         self.widget_registration_portal.raise_()
+        MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 26))
         self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.camera_label = QtWidgets.QLabel(MainWindow)
+        self.camera_label.setGeometry(QtCore.QRect(540, 111, 401, 271))
+        self.camera_label.setStyleSheet("background-color:#fbeaeb;\n"
+                                        "border-radius: 10px;")
+        self.camera_label.setObjectName("camera_label")
+        
+         # Initialize variables for camera capture
+        self.video = cv2.VideoCapture(0)  # Use '0' for the default camera
+
+        # Set up QTimer to update camera feed
+        self.timer = QTimer(MainWindow)
+        self.timer.timeout.connect(self.update_frame)
+        self.timer.start(10)  # Update frame every 10 milliseconds
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.enter_button.clicked.connect(self.enter_button_clicked)
+        self.add_button.clicked.connect(self.add_member_button_clicked)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -581,14 +609,46 @@ class MemberForm(object):
         self.status_heading.setText(_translate("MainWindow", " Status"))
         self.add_button.setText(_translate("MainWindow", "Add"))
         self.add_button.setShortcut(_translate("MainWindow", "Return"))
-        self.face_detected_heading.setText(_translate("MainWindow", "Face Detetcted"))
+        self.face_detected_heading.setText(_translate("MainWindow", "Not Detetcted"))
         self.registration_portal_heading.setText(_translate("MainWindow", "Registration Portal "))
 
+
+    def update_frame(self):
+        ret, frame = self.video.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        h, w, ch = frame.shape
+        bytes_per_line = ch * w
+        convert_to_qt_format = QImage(frame.data, w, h, bytes_per_line, QImage.Format_RGB888)
+        pixmap = QPixmap.fromImage(convert_to_qt_format)
+        self.camera_label.setPixmap(pixmap)
+        
+        #######################
+        
+
+        face_locations = face_recognition.face_locations(frame)  # Detecting the face
+        if self.count == 0 :
+                for face_location in face_locations:
+                
+                        top, right, bottom, left = face_location
+                        face_encodings = face_recognition.face_encodings(frame, [face_location])  # Encoding the detected face
+                        cv2.putText(frame, "Face Detected", (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+                        if len(face_encodings) > 0:
+                                self.img_encodes = face_encodings[0]  # first detected face
+                                self.face_detected_heading.setText("Face Registered")
+                                self.count = 1
+        
+        # print("face saved")
+
+                
+                
+        
+         
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = MemberForm()
+    ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
