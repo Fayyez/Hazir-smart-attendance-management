@@ -30,6 +30,8 @@ pip install -r requirements.txt
 ```
 > ***Note:** This step is only for the first time, do not repeat unless new dependencies are added to the ```requirements.txt``` file. **ALWAYS** remember to add any new dependency/library in the ```requirements.txt``` file.*
 
+5. To run the application, move the the ```/src`` folder and run the ```app.py``` file using python
+
 ## Collaboration Guidelines
 
 You must follow the following workflow guidelines to approve your changes to the final build aka stable production (aka the main branch) and hence collaborate.
