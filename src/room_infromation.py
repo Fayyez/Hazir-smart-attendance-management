@@ -83,8 +83,9 @@ class Ui_RoomInfo(object):
         self.homepageLabel.setStyleSheet("border:none;")
         self.homepageLabel.setObjectName("homepageLabel")
         self.homepageLabel.setText("Room Information")
-
-        self.hometitleLabel.setText(f"Title: {classrooms['sn_123_class_2'].title}\nNumber of Students: {str(self.classrooms['sn_123_class_2'].studentount)}\nCLass ID: {classrooms['sn_123_class_2'].class_id}")
+        number_of_students = classrooms['sn_123_class_2'].studentcount
+        print(number_of_students)
+        self.hometitleLabel.setText(f"Title: {classrooms['sn_123_class_2'].title}\nNumber of Students: {number_of_students}\nCLass ID: {classrooms['sn_123_class_2'].class_id}")
         self.hometitleLabel.setStyleSheet("QLabel {"
                          "  alignment: left top;"
                          "  padding: 5px;"
@@ -92,12 +93,6 @@ class Ui_RoomInfo(object):
                          " color: black;"
                          "}")
         self.hometitleLabel.setObjectName("hometitleLabel")
-
-
-
-
-
-
 
 
         self.hometitleLabel.setObjectName("hometitleLabel")
@@ -352,10 +347,10 @@ class Ui_RoomInfo(object):
        # QtCore.QMetaObject.connectSlotsByName()
 
     def addmember(self):
-        from add_member_page_ui import MemberForm
+        from add_member_page_ui import AddMemberPage
         app = QtWidgets.QApplication(sys.argv)
         window = QtWidgets.QDialog()
-        ui = MemberForm()
+        ui = AddMemberPage()
         ui.setupUi(window)
         self.currentwindow.close()
         window.show()
@@ -373,7 +368,6 @@ class Ui_RoomInfo(object):
         window.exec_()
         sys.exit(app.exec_())
 
-
     def backbutton(self):
         from home_page_ui import Ui_homepage
         app = QtWidgets.QApplication(sys.argv)
@@ -390,23 +384,12 @@ class Ui_RoomInfo(object):
         msg_box.setText("Report was generated successfully and saved in the output folder.")
         msg_box.exec_() 
 
-
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        RoomInfo.setWindowTitle(_translate("RoomInfo", "Room Information"))
-        self.roomdetailsLabel_2.setText(_translate("RoomInfo", "Room Details"))
-        self.addmemberLabel_3.setText(_translate("RoomInfo", "Add Member"))
-        self.hometitleLabel.setText(_translate("RoomInfo", "Room Title"))
-        self.bread_crumbs_label.setText(_translate("RoomInfo", "HomePage->RoomInformation"))
-        self.start_seesion_button.setText(_translate("RoomInfo", "        Start Session"))
-        self.get_last_report_button.setText(_translate("RoomInfo", "            Get Last Report"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    RoomInfo = QtWidgets.QDialog()
-    ui = Ui_RoomInfo()
-    ui.setupUi(RoomInfo, sample_classroom)
-    RoomInfo.show()
-    sys.exit(app.exec_())
+        #RoomInfo.setWindowTitle(_translate("RoomInfo", "Room Information"))
+        # self.roomdetailsLabel_2.setText(_translate("RoomInfo", "Room Details"))
+        # self.addmemberLabel_3.setText(_translate("RoomInfo", "Add Member"))
+        # self.hometitleLabel.setText(_translate("RoomInfo", "Room Title"))
+        # self.bread_crumbs_label.setText(_translate("RoomInfo", "HomePage->RoomInformation"))
+        # self.start_seesion_button.setText(_translate("RoomInfo", "        Start Session"))
+        # self.get_last_report_button.setText(_translate("RoomInfo", "            Get Last Report"))

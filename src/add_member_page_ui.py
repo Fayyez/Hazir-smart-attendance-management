@@ -12,17 +12,21 @@ from json import load, dump
 import cv2
 import face_recognition
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import QTimer
+import sys
+from Classes.classes import ClassRoom
 
-
+# global declarations
 folder_path = getcwd() + "/src"
 print(folder_path)
+sample_classroom = {'sn_123_class_2' : ClassRoom('Human And Computer Interaction', 8, "sn_123", 'sn_123_class_2')}
 
 class Ui_MainWindow(object):
     img_encodes = []
     count = 0
+    currentwindow=None
+
     def enter_button_clicked(self):
         self.name = self.name_input_box.text()
         self.id = self.id_input_box.text()
@@ -30,21 +34,41 @@ class Ui_MainWindow(object):
         print(self.id)
         
     def add_member_button_clicked(self):
-        self.enter_button_clicked() # call the enter button trigger
-        with open(f"{folder_path}/records/students_data.json", "r") as f:
-                data = load(f)
-                student = {
-                        "name": self.name,
-                        "rollno": self.id,
-                        "class_id": "sn_123_class_1",
-                        "face": list(self.img_encodes)
-                }
-                data.append(student)
-                with open(f"{folder_path}/records/students_data.json", "w") as f:
-                        dump(data, f, indent=4)
-                print(f"{student} \nadded to json file")
+        if self.count >= 1:
+                self.enter_button_clicked() # call the enter button trigger
+                with open(f"{folder_path}/records/students_data.json", "r") as f:
+                        data = load(f)
+                        student = {
+                                "name": self.name,
+                                "rollno": self.id,
+                                "class_id": "sn_123_class_1",
+                                "face": list(self.img_encodes)
+                        }
+                        data.append(student)
+                        with open(f"{folder_path}/records/students_data.json", "w") as f:
+                                dump(data, f, indent=4)
+                        msg_box = QtWidgets.QMessageBox()
+                        msg_box.setWindowTitle("Success")
+                        msg_box.setText(f"Student added to class successfully!.")
+                        msg_box.exec_()
+                # open room infor screen again
+                from room_infromation import Ui_RoomInfo
+                app = QtWidgets.QApplication(sys.argv)
+                window = QtWidgets.QDialog()
+                ui = Ui_RoomInfo()
+                ui.setupUi(window, sample_classroom)
+                self.currentwindow.close()
+                window.show()
+                window.exec_()
+                sys.exit(app.exec_())
+        else:
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Error")
+                msg_box.setText(f"image not uploaded.")
+                msg_box.exec_()
 
     def setupUi(self, MainWindow):
+        self.currentwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 700)
         MainWindow.setStyleSheet("background-color:#FBEAEB\n"
@@ -588,7 +612,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.enter_button.clicked.connect(self.enter_button_clicked)
         self.add_button.clicked.connect(self.add_member_button_clicked)
-
+        
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -611,7 +635,6 @@ class Ui_MainWindow(object):
         self.add_button.setShortcut(_translate("MainWindow", "Return"))
         self.face_detected_heading.setText(_translate("MainWindow", "Not Detetcted"))
         self.registration_portal_heading.setText(_translate("MainWindow", "Registration Portal "))
-
 
     def update_frame(self):
         ret, frame = self.video.read()
@@ -638,16 +661,12 @@ class Ui_MainWindow(object):
                                 self.face_detected_heading.setText("Face Registered")
                                 self.count = 1
                                 #set the color to green
-                                green_color_hec_code = '#00ff00'
+                                self.green_color_hec_code = '#00ff00'
                                 self.add_button.setStyleSheet("border: 2px solid black; \n"
 "color: black;\n"
 "background-color:#008000 ;\n"
 "border-radius:10px")
         
-        # print("face saved")
-
-                
-                
         
          
 if __name__ == "__main__" :
@@ -658,3 +677,10 @@ if __name__ == "__main__" :
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+
+# msg_box = QMessageBox()
+# msg_box.setText(f"Invalid username or password. Please try again!")
+# self.usernamebox.setText("")
+# self.usernamebox_2.setText("")
+# msg_box.exec_()  

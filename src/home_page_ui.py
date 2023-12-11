@@ -144,6 +144,7 @@ class Ui_homepage(object):
         self.retranslateUi(mainwindow)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
+
     def retranslateUi(self, homepage):
         _translate = QtCore.QCoreApplication.translate
         homepage.setWindowTitle(_translate("homepage", "Home Page"))
