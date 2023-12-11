@@ -387,9 +387,8 @@ class LoginPage(object):
         username = self.usernamebox.text()
         password = int(self.usernamebox_2.text())
         # get text from user
-        if username in teachers :
-                print(teachers[username], teachers[username].password)
-                if teachers[username].password == password : # if username macthed
+        if username in teachers and teachers[username].password == password:
+                        print(teachers[username], teachers[username].password)
                         print("Login Successful")
                         
                         # load all the classrooms with same teacher id

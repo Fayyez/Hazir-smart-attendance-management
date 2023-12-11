@@ -11,26 +11,26 @@ class Ui_RoomInfo(object):
     classrooms = None
 
     def setupUi(self, mainwindow, classrooms):
-        self.classrooms = classrooms
+        self.classrooms = sample_classroom
         self.currentwindow = mainwindow
         mainwindow.setObjectName("RoomInfo")
-        mainwindow.resize(1000, 639)
+        mainwindow.resize(1000, 700)
         mainwindow.setStyleSheet("background-color:#2f3c7e")
-        self.widget = QtWidgets.QWidget(mainwindow)
-        self.widget.setGeometry(QtCore.QRect(40, 130, 401, 471))
-        self.widget.setStyleSheet("background-color:#fbeaeb;\n" "border-radius:30px;")
-        self.widget.setObjectName("widget")
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget)
+        self.display_card = QtWidgets.QWidget(mainwindow)
+        self.display_card.setGeometry(QtCore.QRect(40, 130, 401, 471))
+        self.display_card.setStyleSheet("background-color:#fbeaeb;\n" "border-radius:30px;")
+        self.display_card.setObjectName("widget")
+        self.pushButton_2 = QtWidgets.QPushButton(self.display_card)
         self.pushButton_2.setGeometry(QtCore.QRect(270, 340, 101, 101))
         user_icon = QtGui.QIcon()
         user_icon.addPixmap(QtGui.QPixmap(folder_path+"/assets/u2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_2.setIconSize(QtCore.QSize(50, 50))
+        self.pushButton_2.setIconSize(QtCore.QSize(60, 60))
         self.pushButton_2.setIcon(user_icon)
         self.pushButton_2.clicked.connect(self.addmember)
 
         self.pushButton_2.setText("")
         self.pushButton_2.setObjectName("pushButton_2")
-        self.roomdetailsLabel_2 = QtWidgets.QLabel(self.widget)
+        self.roomdetailsLabel_2 = QtWidgets.QLabel(self.display_card)
         self.roomdetailsLabel_2.setGeometry(QtCore.QRect(110, 30, 171, 41))
         # allign the text to right
         self.roomdetailsLabel_2.setAlignment(QtCore.Qt.AlignCenter)
@@ -42,15 +42,23 @@ class Ui_RoomInfo(object):
         self.roomdetailsLabel_2.setFont(font)
         self.roomdetailsLabel_2.setStyleSheet("border:2px solid black;\n" "border-radius: 10px;")
         self.roomdetailsLabel_2.setObjectName("roomdetailsLabel_2")
-        self.gridLayoutWidget = QtWidgets.QWidget(self.widget)
+        self.gridLayoutWidget = QtWidgets.QWidget(self.display_card)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(29, 110, 341, 211))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
-        ## add the room details here
 
-        self.addmemberLabel_3 = QtWidgets.QLabel(self.widget)
+        # add room details to the card here
+        self.room_title_lable = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.room_title_lable.setObjectName("room_title_lable")
+        self.room_title_lable.setFont(font)
+        self.room_title_lable.setText(f"Title: {classrooms['sn_123_class_2'].title}")
+        self.room_title_lable.setStyleSheet("border:none;")
+        # increase the size of the label
+        self.room_title_lable.setGeometry(QtCore.QRect(65, 220, 300, 300))
+
+        self.addmemberLabel_3 = QtWidgets.QLabel(self.display_card)
         self.addmemberLabel_3.setGeometry(QtCore.QRect(240, 430, 141, 31))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
@@ -64,16 +72,29 @@ class Ui_RoomInfo(object):
         self.widget_2.setGeometry(QtCore.QRect(-1, 0, 1001, 51))
         self.widget_2.setStyleSheet("background-color:#fbeaeb")
         self.widget_2.setObjectName("widget_2")
-        self.hometitleLabel = QtWidgets.QLabel(self.widget_2)
-        self.hometitleLabel.setGeometry(QtCore.QRect(460, 10, 151, 31))
-        font = QtGui.QFont()
-        font.setFamily("Yu Gothic UI Semibold")
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
+        self.hometitleLabel = QtWidgets.QLabel(self.display_card)
+        self.hometitleLabel.setGeometry(QtCore.QRect(20, 80, 281, 230))
+        font.setWeight(10)
         self.hometitleLabel.setFont(font)
-        self.hometitleLabel.setStyleSheet("border:2px solid black;\n"
-"border-radius: 10px;")
+
+        self.homepageLabel = QtWidgets.QLabel(self.widget_2)
+        self.homepageLabel.setGeometry(QtCore.QRect(410, 10, 201, 31))
+        self.homepageLabel.setFont(font)
+        self.homepageLabel.setStyleSheet("border:none;")
+        self.homepageLabel.setObjectName("homepageLabel")
+        self.homepageLabel.setText("Room Information")
+        number_of_students = classrooms['sn_123_class_2'].studentcount
+        print(number_of_students)
+        self.hometitleLabel.setText(f"Title: {classrooms['sn_123_class_2'].title}\nNumber of Students: {number_of_students}\nCLass ID: {classrooms['sn_123_class_2'].class_id}")
+        self.hometitleLabel.setStyleSheet("QLabel {"
+                         "  alignment: left top;"
+                         "  padding: 5px;"
+                         "  qproperty-wordWrap: true;"
+                         " color: black;"
+                         "}")
+        self.hometitleLabel.setObjectName("hometitleLabel")
+
+
         self.hometitleLabel.setObjectName("hometitleLabel")
         self.bread_crumbs_label = QtWidgets.QLabel(self.widget_2)
         self.bread_crumbs_label.setGeometry(QtCore.QRect(80, 10, 271, 31))
@@ -281,6 +302,15 @@ class Ui_RoomInfo(object):
         self.userpic_2.setPixmap(QtGui.QPixmap(f"{folder_path}/assets/report.png"))
         self.userpic_2.setScaledContents(True)
         self.userpic_2.setObjectName("userpic_2")
+
+        ### setting text and label snames
+        self.roomdetailsLabel_2.setText("Room Details")
+        self.roomdetailsLabel_2.setText("Room Details")
+        self.addmemberLabel_3.setText("Add Member")
+        self.bread_crumbs_label.setText("HomePage->RoomInformation")
+        self.start_seesion_button.setText("        Start Session")
+        self.start_seesion_button.clicked.connect(self.startSession)
+        self.get_last_report_button.setText("            Get Last Report")
     
     def show_hamburger_menu(self):
         menu = QtWidgets.QMenu(self.widget_2)
@@ -318,10 +348,10 @@ class Ui_RoomInfo(object):
        # QtCore.QMetaObject.connectSlotsByName()
 
     def addmember(self):
-        from add_member_page_ui import MemberForm
+        from add_member_page_ui import Ui_MainWindow 
         app = QtWidgets.QApplication(sys.argv)
         window = QtWidgets.QDialog()
-        ui = MemberForm()
+        ui = Ui_MainWindow()
         ui.setupUi(window)
         self.currentwindow.close()
         window.show()
@@ -339,7 +369,6 @@ class Ui_RoomInfo(object):
         window.exec_()
         sys.exit(app.exec_())
 
-
     def backbutton(self):
         from home_page_ui import Ui_homepage
         app = QtWidgets.QApplication(sys.argv)
@@ -356,23 +385,12 @@ class Ui_RoomInfo(object):
         msg_box.setText("Report was generated successfully and saved in the output folder.")
         msg_box.exec_() 
 
-
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-       # RoomInfo.setWindowTitle(_translate("RoomInfo", "Room Information"))
-        self.roomdetailsLabel_2.setText(_translate("RoomInfo", "Room Details"))
-        self.addmemberLabel_3.setText(_translate("RoomInfo", "Add Member"))
-        self.hometitleLabel.setText(_translate("RoomInfo", "Room Title"))
-        self.bread_crumbs_label.setText(_translate("RoomInfo", "HomePage->RoomInformation"))
-        self.start_seesion_button.setText(_translate("RoomInfo", "        Start Session"))
-        self.get_last_report_button.setText(_translate("RoomInfo", "            Get Last Report"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    RoomInfo = QtWidgets.QDialog()
-    ui = Ui_RoomInfo()
-    ui.setupUi(RoomInfo, sample_classroom)
-    RoomInfo.show()
-    sys.exit(app.exec_())
+        #RoomInfo.setWindowTitle(_translate("RoomInfo", "Room Information"))
+        # self.roomdetailsLabel_2.setText(_translate("RoomInfo", "Room Details"))
+        # self.addmemberLabel_3.setText(_translate("RoomInfo", "Add Member"))
+        # self.hometitleLabel.setText(_translate("RoomInfo", "Room Title"))
+        # self.bread_crumbs_label.setText(_translate("RoomInfo", "HomePage->RoomInformation"))
+        # self.start_seesion_button.setText(_translate("RoomInfo", "        Start Session"))
+        # self.get_last_report_button.setText(_translate("RoomInfo", "            Get Last Report"))

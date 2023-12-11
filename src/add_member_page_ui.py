@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\add_member_page.ui'
+# Form implementation generated from reading ui file 'd:\Hazir-smart-attendance-management\src\addStudent_by_wj.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,39 +9,73 @@
 
 from os import getcwd
 from json import load, dump
+import cv2
+import face_recognition
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtCore import QTimer
+import sys
+from Classes.classes import ClassRoom
 
-folder_path = getcwd()
+# global declarations
+folder_path = getcwd() + "/src"
 print(folder_path)
+sample_classroom = {'sn_123_class_2' : ClassRoom('Human And Computer Interaction', 9, "sn_123", 'sn_123_class_2')}
 
-class MemberForm(object):
+class Ui_MainWindow(object):
+    img_encodes = []
+    count = 0
+    currentwindow=None
+
     def enter_button_clicked(self):
         self.name = self.name_input_box.text()
         self.id = self.id_input_box.text()
         print(self.name)
         print(self.id)
-        with open(f"{folder_path}/records/students_data.json", "r") as f:
-                data = load(f)
-                print(data)
-                student = {
-                      "name": self.name,
-                      "rollno": self.id,
-                      "class_id": "sn_123_class_1",
-                      "face": []
-                }
-                data.append(student)
-                with open(f"{folder_path}/records/students_data.json", "w") as f:
-                        dump(data, f, indent=4)
         
+    def add_member_button_clicked(self):
+        if self.count >= 1:
+                self.enter_button_clicked() # call the enter button trigger
+                with open(f"{folder_path}/records/students_data.json", "r") as f:
+                        data = load(f)
+                        student = {
+                                "name": self.name,
+                                "rollno": self.id,
+                                "class_id": "sn_123_class_1",
+                                "face": list(self.img_encodes)
+                        }
+                        data.append(student)
+                        with open(f"{folder_path}/records/students_data.json", "w") as f:
+                                dump(data, f, indent=4)
+                        msg_box = QtWidgets.QMessageBox()
+                        msg_box.setWindowTitle("Success")
+                        msg_box.setText(f"Student added to class successfully!.")
+                        msg_box.exec_()
+                # open room infor screen again
+                from room_infromation import Ui_RoomInfo
+                app = QtWidgets.QApplication(sys.argv)
+                window = QtWidgets.QDialog()
+                ui = Ui_RoomInfo()
+                ui.setupUi(window, sample_classroom)
+                self.currentwindow.close()
+                window.show()
+                window.exec_()
+                sys.exit(app.exec_())
+        else:
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Error")
+                msg_box.setText(f"image not uploaded.")
+                msg_box.exec_()
 
     def setupUi(self, MainWindow):
+        self.currentwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 700)
         MainWindow.setStyleSheet("background-color:#FBEAEB\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.user_icon_button = QtWidgets.QPushButton(self.centralwidget)
+        self.user_icon_button = QtWidgets.QPushButton(MainWindow)
         self.user_icon_button.setGeometry(QtCore.QRect(870, 0, 57, 50))
         self.user_icon_button.setText("")
         icon = QtGui.QIcon()
@@ -49,7 +83,7 @@ class MemberForm(object):
         self.user_icon_button.setIcon(icon)
         self.user_icon_button.setIconSize(QtCore.QSize(45, 45))
         self.user_icon_button.setObjectName("user_icon_button")
-        self.hamburger_button = QtWidgets.QPushButton(self.centralwidget)
+        self.hamburger_button = QtWidgets.QPushButton(MainWindow)
         self.hamburger_button.setGeometry(QtCore.QRect(930, -10, 61, 61))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
@@ -162,12 +196,12 @@ class MemberForm(object):
         self.hamburger_button.setIcon(icon1)
         self.hamburger_button.setIconSize(QtCore.QSize(100, 90))
         self.hamburger_button.setObjectName("hamburger_button")
-        self.Horizontal_line_at_top_1 = QtWidgets.QFrame(self.centralwidget)
+        self.Horizontal_line_at_top_1 = QtWidgets.QFrame(MainWindow)
         self.Horizontal_line_at_top_1.setGeometry(QtCore.QRect(0, 42, 1001, 16))
         self.Horizontal_line_at_top_1.setFrameShape(QtWidgets.QFrame.HLine)
         self.Horizontal_line_at_top_1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.Horizontal_line_at_top_1.setObjectName("Horizontal_line_at_top_1")
-        self.navigation_bar = QtWidgets.QLabel(self.centralwidget)
+        self.navigation_bar = QtWidgets.QLabel(MainWindow)
         self.navigation_bar.setGeometry(QtCore.QRect(60, 10, 300, 31))
         font = QtGui.QFont()
         font.setFamily("Yu Gothic UI Semibold")
@@ -178,8 +212,8 @@ class MemberForm(object):
         self.navigation_bar.setStyleSheet("color:black\n"
 "")
         self.navigation_bar.setObjectName("navigation_bar")
-        self.background_frame_top_1 = QtWidgets.QFrame(self.centralwidget)
-        self.background_frame_top_1.setGeometry(QtCore.QRect(0, 0, 1001, 51))
+        self.background_frame_top_1 = QtWidgets.QFrame(MainWindow)
+        self.background_frame_top_1.setGeometry(QtCore.QRect(0, 0, 1001, 100))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(251, 234, 235))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -313,8 +347,8 @@ class MemberForm(object):
         self.pushButton.setIcon(icon2)
         self.pushButton.setIconSize(QtCore.QSize(40, 35))
         self.pushButton.setObjectName("pushButton")
-        self.widget_registration_portal = QtWidgets.QWidget(self.centralwidget)
-        self.widget_registration_portal.setGeometry(QtCore.QRect(40, 80, 921, 581))
+        self.widget_registration_portal = QtWidgets.QWidget(MainWindow)
+        self.widget_registration_portal.setGeometry(QtCore.QRect(40, 80, 921, 981))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.widget_registration_portal.setFont(font)
@@ -551,15 +585,33 @@ class MemberForm(object):
         self.Horizontal_line_at_top_1.raise_()
         self.navigation_bar.raise_()
         self.widget_registration_portal.raise_()
+        #MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 26))
         self.menubar.setObjectName("menubar")
+        #MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
+        #MainWindow.setStatusBar(self.statusbar)
+        self.camera_label = QtWidgets.QLabel(MainWindow)
+        self.camera_label.setGeometry(QtCore.QRect(540, 111, 401, 271))
+        self.camera_label.setStyleSheet("background-color:#fbeaeb;\n"
+                                        "border-radius: 10px;")
+        self.camera_label.setObjectName("camera_label")
+        
+         # Initialize variables for camera capture
+        self.video = cv2.VideoCapture(0)  # Use '0' for the default camera
+
+        # Set up QTimer to update camera feed
+        self.timer = QTimer(MainWindow)
+        self.timer.timeout.connect(self.update_frame)
+        self.timer.start(10)  # Update frame every 10 milliseconds
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.enter_button.clicked.connect(self.enter_button_clicked)
+        self.add_button.clicked.connect(self.add_member_button_clicked)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -581,14 +633,52 @@ class MemberForm(object):
         self.status_heading.setText(_translate("MainWindow", " Status"))
         self.add_button.setText(_translate("MainWindow", "Add"))
         self.add_button.setShortcut(_translate("MainWindow", "Return"))
-        self.face_detected_heading.setText(_translate("MainWindow", "Face Detetcted"))
+        self.face_detected_heading.setText(_translate("MainWindow", "Not Detetcted"))
         self.registration_portal_heading.setText(_translate("MainWindow", "Registration Portal "))
 
-if __name__ == "__main__":
+
+    def update_frame(self):
+        ret, frame = self.video.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        h, w, ch = frame.shape
+        bytes_per_line = ch * w
+        convert_to_qt_format = QImage(frame.data, w, h, bytes_per_line, QImage.Format_RGB888)
+        pixmap = QPixmap.fromImage(convert_to_qt_format)
+        self.camera_label.setPixmap(pixmap)
+        
+        #######################
+        
+
+        face_locations = face_recognition.face_locations(frame)  # Detecting the face
+        if self.count == 0 :
+                for face_location in face_locations:
+                
+                        top, right, bottom, left = face_location
+                        face_encodings = face_recognition.face_encodings(frame, [face_location])  # Encoding the detected face
+                        cv2.putText(frame, "Face Detected", (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+                        if len(face_encodings) > 0:
+                                self.img_encodes = face_encodings[0]  # first detected face
+                                self.face_detected_heading.setText("Face Registered")
+                                self.count = 1
+                                #set the color to green
+                                green_color_hec_code = '#00ff00'
+                                self.add_button.setStyleSheet("border: 2px solid black; \n"
+"color: black;\n"
+"background-color:#008000 ;\n"
+"border-radius:10px")
+        
+        # print("face saved")
+
+                
+                
+        
+         
+if __name__ == "__main__" :
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = MemberForm()
+    ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
