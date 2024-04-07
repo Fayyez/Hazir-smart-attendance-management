@@ -1,6 +1,6 @@
 # Hazir-IO: Smart AI Attendance Management System
 ## Introduction
-**Hazir-IO** is a state-of-the-art AI attendance management which is further powered by computer vision and facial recogniton capabilities to faciliate seemless attendance management and classroom management for teachers and tutors.
+**Hazir-IO** is a state-of-the-art AI attendance management which powered by computer vision and facial recogniton capabilities to faciliate seemless attendance management and classroom management for teachers and tutors.
 
 They can create multiple classes, add students to those classes, student faces can be registered and then attendance sessions can be initiated which seemlessly detect and compare faces with registered faces and mark attendance, automating the trivial and difficult task of managing daily attendance. The project caters to the **HCI** and **Universal Design** principles by catering diverse audiences and socio-cultural or enviornmental constraints such as poor lighting or covered clothing such as hijab, the option of teacher-verified manual entry i provided, while to cater for different disabilities, text-to-speech functionality has also been provided.
 
